@@ -13,7 +13,10 @@ const MenuPage = () => {
   return (
     <div>
       <Header />
-      <Category setSelectedCategory={setSelectedCategory} />
+      <Category
+        setSelectedCategory={setSelectedCategory}
+        selectedCategory={selectedCategory}
+      />
       {selectedCategory ? (
         <MenuItem category={selectedCategory} />
       ) : (
