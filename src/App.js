@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import "./App.css";
 import Test from "./test/Test";
-import Category from "./components/Category";
-import MenuItem from "./components/MenuItem";
-import OptionSelect from "./components/OptionSelect";
-import Cart from "./components/Cart";
-import OrderList from "./components/OrderList";
-import Payment from "./components/Payment";
 import Home from "./components/Home";
-import LocationSelect from "./components/LocationSelect";
+import LocationSelect from "./components/order/LocationSelect";
+import Category from "./components/menu/Category";
+import MenuItem from "./components/menu/MenuItem";
+import OptionSelect from "./components/menu/OptionSelect";
+import Cart from "./components/menu/Cart";
+import OrderList from "./components/order/OrderList";
+import Payment from "./components/order/Payment";
 
 function App() {
   return (
