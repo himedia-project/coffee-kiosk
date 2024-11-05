@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import itemData from "../../data/itemData";
+import { useNavigate } from "react-router-dom";
 
 const MenuItem = ({ category }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -13,6 +15,14 @@ const MenuItem = ({ category }) => {
   const closeModal = () => {
     setIsOpen(false);
     setSelectedItem(null);
+  };
+  const handleOrderSubmit = () => {// `orderItems` 데이터를 `navigate`로 전달
+    const orderItem = {
+      
+      temperature: document.querySelector('input[name="temperature"]:checked').value,
+      density: document.querySelector('input[name="density"]:checked').value,
+    };
+    navigate("/order-list", { state: { orderItem } });
   };
 
   return (
@@ -82,7 +92,9 @@ const MenuItem = ({ category }) => {
               >
                 취소
               </button>
-              <button className="bg-green-500 text-white px-4 py-2 rounded">
+              <button 
+              onClick={handleOrderSubmit}
+              className="bg-green-500 text-white px-4 py-2 rounded">
                 주문담기
               </button>
             </div>
