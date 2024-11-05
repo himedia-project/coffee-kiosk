@@ -6,7 +6,7 @@ const OrderList = () => {
   return (
     <div>
       <h2>주문 목록</h2>
-      <ul>{/* 주문 목록 항목을 여기에 표시 */}</ul>
+      <ul>{}</ul>
       <Link to="/location">장소 선택으로 이동</Link> {/* 장소 선택 링크 추가 */}
     </div>
   );
