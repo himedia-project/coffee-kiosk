@@ -10,6 +10,7 @@ const Home = () => {
       <button className="bg-white text-green-500 py-2 px-4 rounded-lg shadow-md hover:bg-gray-200">
         <Link to="/menu">화면을 터치해 주세요</Link>
       </button>
+      <p className="text-2xl mt-4">🎉 지금 주문하시면 10% 할인! 🎉</p>
     </div>
   );
 };
