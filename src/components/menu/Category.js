@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Category = () => {
-  const categories = ["커피", "음료", "디저트"];
+  const categories = ["커피", "에이드&티", "음료", "디저트"];
   return (
     <div>
       <h2>카테고리</h2>
