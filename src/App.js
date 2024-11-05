@@ -9,6 +9,7 @@ import OptionSelect from "./components/menu/OptionSelect";
 import Cart from "./components/menu/Cart";
 import OrderList from "./components/order/OrderList";
 import Payment from "./components/order/Payment";
+import MenuPage from "./pages/menu/MenuPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           {" "}
           <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<MenuPage />} />
           <Route path="/category" element={<Category />} />
           <Route path="/menu/:category" element={<MenuItem />} />
           <Route path="/options/:item" element={<OptionSelect />} />
