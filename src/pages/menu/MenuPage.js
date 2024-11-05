@@ -1,15 +1,14 @@
+import { MenuItem } from "@mui/material";
 import React from "react";
-import Header from "../../layouts/Header";
 import Category from "../../components/menu/Category";
-import ItemList from "../../components/ItemList";
+import Header from "../../layouts/Header";
 
 const MenuPage = () => {
   return (
     <div>
-      <h2>MenuPage</h2>
       <Header />
       <Category />
-      <ItemList />
+      <MenuItem />
     </div>
   );
 };
