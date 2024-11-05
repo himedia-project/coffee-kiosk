@@ -38,7 +38,11 @@ const MenuItem = ({ category }) => {
       </ul>
 
       {isOpen && (
-        <ItemOptionModal selectedItem={selectedItem} closeModal={closeModal} />
+        <ItemOptionModal
+          category={category}
+          selectedItem={selectedItem}
+          closeModal={closeModal}
+        />
       )}
     </div>
   );
