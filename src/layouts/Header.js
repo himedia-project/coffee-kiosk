@@ -8,7 +8,9 @@ const Header = () => {
         <Link to="/" className="text-xl font-bold">
           <img src="home.png" alt="Home" className="inline-block w-6 h-6" />{" "}
         </Link>
-        <h1 className="text-2xl text-center flex-1">Mega I's Cafe KIOSK</h1>
+        <h1 className="text-2xl text-center font-bold flex-1">
+          Mega I's Cafe KIOSK
+        </h1>
       </header>
     </>
   );
