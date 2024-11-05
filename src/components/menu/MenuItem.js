@@ -22,7 +22,7 @@ const MenuItem = ({ category }) => {
         {itemData[category]?.map((item) => (
           <li
             key={item.id}
-            className="m-3 border border-gray-300 rounded-lg overflow-hidden w-40 bg-white transition-transform transform hover:scale-105 cursor-pointer flex flex-col items-center"
+            className="m-2 border border-gray-300 rounded-lg overflow-hidden w-40 bg-white transition-transform transform hover:scale-105 cursor-pointer flex flex-col items-center"
             onClick={() => handleItemClick(item)}
           >
             <img
