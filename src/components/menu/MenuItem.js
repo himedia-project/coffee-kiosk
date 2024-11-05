@@ -22,10 +22,14 @@ const MenuItem = ({ category }) => {
         {itemData[category]?.map((item) => (
           <li
             key={item.id}
-            className="m-2 border border-gray-300 rounded-lg overflow-hidden w-40 bg-white transition-transform transform hover:scale-105 cursor-pointer"
+            className="m-2 border border-gray-300 rounded-lg overflow-hidden w-40 bg-white transition-transform transform hover:scale-105 cursor-pointer flex flex-col items-center"
             onClick={() => handleItemClick(item)}
           >
-            <img src={item.url} alt={item.name} className="w-24 h-auto" />
+            <img
+              src={item.url}
+              alt={item.name}
+              className="w-24 h-auto mx-auto"
+            />
             <span className="text-lg mt-2">{item.name}</span>
             <span className="text-sm text-gray-600">{item.price}원</span>
           </li>

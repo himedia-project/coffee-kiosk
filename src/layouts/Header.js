@@ -6,7 +6,12 @@ const Header = () => {
     <>
       <header className="bg-green-600 text-white p-4 flex items-center justify-between">
         <Link to="/" className="text-xl font-bold">
-          <span className="material-icons">home</span> LYJ KIOSK
+          <img
+            src="home_icon.png"
+            alt="Home"
+            className="inline-block w-6 h-6"
+          />{" "}
+          Mega I's Cafe KIOSK
         </Link>
       </header>
     </>
