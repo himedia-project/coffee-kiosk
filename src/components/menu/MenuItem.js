@@ -1,10 +1,8 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import itemData from "../../data/itemData";
 
-const MenuItem = () => {
-  const { category } = useParams();
-
+const MenuItem = ({ category }) => {
   return (
     <div>
       <h2>{category} 메뉴</h2>

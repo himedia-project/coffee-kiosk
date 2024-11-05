@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Category = () => {
+const Category = ({ setSelectedCategory }) => {
   const categories = [
     { name: "커피", path: "/menu/커피" },
     { name: "에이드&티", path: "/menu/에이드&티" },
@@ -15,12 +15,12 @@ const Category = () => {
       <ul className="flex space-x-4">
         {categories.map((category) => (
           <li key={category.name} className="flex-1">
-            <Link
-              to={category.path}
+            <button
+              onClick={() => setSelectedCategory(category.name)}
               className="block text-center py-2 px-4 rounded-lg border border-gray-300 hover:bg-green-500 hover:text-white transition"
             >
               {category.name}
-            </Link>
+            </button>
           </li>
         ))}
       </ul>
