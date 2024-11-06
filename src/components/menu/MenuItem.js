@@ -67,10 +67,12 @@ const MenuItem = ({ category }) => {
       <h2 className="text-2xl font-bold mb-5">{category} 메뉴</h2>
       <button onClick={handleOrderTestClick}>주문 테스트 버튼</button>
       <ul className="flex flex-wrap justify-center list-none p-0 w-[1280px]">
-        {itemData[category]?.map((item) => (
+        {itemData[category]?.map((item, index) => (
           <li
             key={item.id}
-            className="m-2 border border-gray-300 rounded-lg overflow-hidden w-48 bg-white transition-transform transform hover:scale-105 cursor-pointer flex flex-col items-center"
+            className={`m-2 border border-gray-300 rounded-lg overflow-hidden w-48 bg-white transition-transform transform hover:scale-105 cursor-pointer flex flex-col items-center ${
+              index < 2 ? "opacity-50" : ""
+            }`}
             onClick={() => handleItemClick(item)}
           >
             <img
@@ -80,6 +82,21 @@ const MenuItem = ({ category }) => {
             />
             <span className="text-lg mt-2">{item.name}</span>
             <span className="text-sm text-gray-600 mb-2">{item.price}원</span>
+            {index < 2 && (
+              <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                SOLD OUT
+              </span>
+            )}
+            {index >= 4 && index < 8 && (
+              <span className="absolute top-2 right-2 bg-blue-700 text-white text-xs font-bold px-2 py-1 rounded">
+                NEW
+              </span>
+            )}
+            {index === 7 || index === 11 ? (
+              <span className="absolute top-2 right-2 bg-orange-400 text-white text-sm font-bold px-1 py-1 rounded">
+                👍 추천
+              </span>
+            ) : null}
           </li>
         ))}
       </ul>
