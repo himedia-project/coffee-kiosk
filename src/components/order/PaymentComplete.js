@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { clearCart } from "../../slices/cartSlice";
 
-const PaymentComplete = ({ totalAmount }) => {
+const PaymentComplete = () => {
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(5);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -15,6 +18,8 @@ const PaymentComplete = ({ totalAmount }) => {
 
   useEffect(() => {
     if (countdown === 0) {
+      // 결제 완료 후 장바구니 비우고 홈화면으로 전환
+      dispatch(clearCart());
       navigate("/");
     }
   }, [countdown, navigate]);

@@ -135,21 +135,25 @@ const Cart = ({ onMoveToOrderList }) => {
         )}
       </div>
 
-      <div className="mt-6">
-        <button
-          onClick={deleteAll}
-          className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
-        >
-          전체삭제
-        </button>
-        <p className="mt-2 text-lg">총 수량: {totalQuantity()}</p>
-        <p className="text-lg">주문 금액: {totalAmount} 원</p>
-        <button
-          onClick={() => onMoveToOrderList(cartItems)}
-          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        >
-          주문목록으로 이동
-        </button>
+      <div className="mt-6 flex justify-end">
+        <div>
+          <button
+            onClick={deleteAll}
+            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+          >
+            전체삭제
+          </button>
+          <p className="mt-2 text-lg">총 수량: {totalQuantity()}</p>
+          <p className="text-lg">주문 금액: {totalAmount} 원</p>
+        </div>
+        <div>
+          <button
+            onClick={() => onMoveToOrderList(cartItems)}
+            className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          >
+            주문목록으로 이동
+          </button>
+        </div>
       </div>
     </div>
   );

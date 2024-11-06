@@ -83,7 +83,7 @@ const Payment = ({ orderItems, closeModal }) => {
             </div>
           </div>
         ) : (
-          <PaymentComplete totalAmount={totalAmount} />
+          <PaymentComplete />
         )}
       </div>
     </div>
