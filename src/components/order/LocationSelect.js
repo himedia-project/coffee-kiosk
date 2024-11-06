@@ -7,7 +7,7 @@ const LocationSelect = ({ onSelect, closeModal }) => {
   console.log("LocationSelect open!");
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-5 rounded-lg shadow-lg">
+      <div className="bg-white p-5 rounded-lg shadow-lg w-96">
         <h2 className="text-xl font-bold mb-4">장소를 선택해 주세요</h2>
         <ul className="flex flex-col space-y-4">
           {locations.map((location) => (
