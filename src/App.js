@@ -3,7 +3,6 @@ import "./App.css";
 import Home from "./components/Home";
 import Cart from "./components/menu/Cart";
 import Category from "./components/menu/Category";
-import OptionSelect from "./components/menu/OptionSelect";
 import LocationSelect from "./components/order/LocationSelect";
 import OrderList from "./components/order/OrderList";
 import Payment from "./components/order/Payment";
@@ -23,7 +22,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<MenuPage category="coffee" />} />
           <Route path="/category" element={<Category />} />
-          <Route path="/options/:item" element={<OptionSelect />} />
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/orders"

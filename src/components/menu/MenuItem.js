@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import itemData from "../../data/itemData";
-<<<<<<< HEAD
-import { useNavigate } from "react-router-dom";
-=======
 import ItemOptionModal from "../modal/ItemOptionModal";
->>>>>>> c14d9b4babf9ba5c8b57d4431df9631d3486c470
 
 const MenuItem = ({ category }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
+ 
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
