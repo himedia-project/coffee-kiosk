@@ -97,17 +97,9 @@ const Cart = ({ onMoveToOrderList }) => {
                     className="w-24 h-auto mx-auto"
                   />
                   <h3 className="text-lg font-semibold mt-2">{item.name}</h3>
-                  <p className="text-sm">수량: {item.quantity}</p>
-                  <p className="text-sm">가격: {itemPrice(item)} 원</p>
-                  <p className="text-sm">
-                    온도 선택:{" "}
-                    {item.temperature === "hot" ? "뜨거운(HOT)" : "차가운(ICE)"}
-                  </p>
-                  <p className="text-sm">
-                    옵션 선택: {handleChangeDensity(item.density)}
-                  </p>
-                  <p>
+                  <div className="display inline-flex">
                     <button
+                      className="mr-2"
                       onClick={() =>
                         removeCartHandler(
                           item.id,
@@ -116,13 +108,23 @@ const Cart = ({ onMoveToOrderList }) => {
                         )
                       }
                     >
-                      삭제하기
+                      ➖{" "}
                     </button>
+                    <p className="text-sm">수량: {item.quantity}</p>
+                    <button
+                      className="ml-2"
+                      onClick={() => addToCartHandler(item)}
+                    >
+                      ➕
+                    </button>
+                  </div>
+                  <p className="text-sm">가격: {itemPrice(item)} 원</p>
+                  <p className="text-sm">
+                    온도 선택:{" "}
+                    {item.temperature === "hot" ? "뜨거운(HOT)" : "차가운(ICE)"}
                   </p>
-                  <p>
-                    <button onClick={() => addToCartHandler(item)}>
-                      추가하기
-                    </button>
+                  <p className="text-sm">
+                    옵션 선택: {handleChangeDensity(item.density)}
                   </p>
                 </div>
               </li>
