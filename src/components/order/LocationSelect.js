@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 const locations = ["매장", "포장"];
 
-const LocationSelect = () => {
+const LocationSelect = ({ onSelect, closeModal }) => {
+  console.log("LocationSelect open!");
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-5 rounded-lg shadow-lg">
@@ -11,25 +12,34 @@ const LocationSelect = () => {
         <ul className="flex flex-col space-y-4">
           {locations.map((location) => (
             <li key={location}>
-              <Link to="/payment">
-                <button className="w-full bg-green-500 text-white px-4 py-2 rounded">
-                  {location}
-                </button>
-              </Link>
+              <button
+                className="w-full bg-green-500 text-white px-4 py-2 rounded"
+                onClick={() => {
+                  onSelect(location);
+                  closeModal();
+                }}
+              >
+                {location}
+              </button>
             </li>
           ))}
         </ul>
         <div className="mt-4 flex justify-between">
-          <Link to="/previous">
-            <button className="bg-gray-300 text-gray-800 px-4 py-2 rounded">
-              취소
-            </button>
-          </Link>
-          <Link to="/payment">
-            <button className="bg-green-500 text-white px-4 py-2 rounded">
-              다음
-            </button>
-          </Link>
+          <button
+            className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
+            onClick={closeModal}
+          >
+            취소
+          </button>
+          <button
+            className="bg-green-500 text-white px-4 py-2 rounded"
+            onClick={() => {
+              onSelect();
+              closeModal();
+            }}
+          >
+            다음
+          </button>
         </div>
       </div>
     </div>

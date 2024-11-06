@@ -7,7 +7,7 @@ const dummyData = [
   { name: "사과생크림와플", quantity: 1, price: 3500 },
 ]; // 말 그대로 시험용 더미 데이터
 
-const OrderListModal = ({ closeModal }) => {
+const OrderListModal = ({ closeModal, onComplete, onNext }) => {
   const totalQuantity = dummyData.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = dummyData.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -53,11 +53,16 @@ const OrderListModal = ({ closeModal }) => {
           >
             취소
           </button>
-          <Link to="/location">
-            <button className="bg-green-500 text-white px-4 py-2 rounded">
-              다음
-            </button>
-          </Link>
+          <button
+            onClick={() => {
+              console.log("Next button clicked"); // 디버깅용 로그
+              onNext(); // onNext 호출
+              closeModal();
+            }}
+            className="bg-green-500 text-white px-4 py-2 rounded"
+          >
+            다음
+          </button>
         </div>
       </div>
     </div>

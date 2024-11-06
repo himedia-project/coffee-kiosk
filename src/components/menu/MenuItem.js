@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import itemData from "../../data/itemData";
 import ItemOptionModal from "../modal/ItemOptionModal";
 import OrderListModal from "../modal/OrderListModal";
+import LocationSelect from "../order/LocationSelect";
+import Payment from "../order/Payment";
 
 const MenuItem = ({ category }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-
   const [isOrderOpen, setOrderOpen] = useState(false);
+  const [isLocationOpen, setLocationOpen] = useState(false);
+  const [isPaymentOpen, setPaymentOpen] = useState(false);
+  const [orderItems, setOrderItems] = useState([]);
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -16,12 +20,46 @@ const MenuItem = ({ category }) => {
 
   const closeModal = () => {
     setIsOpen(false);
+    // setOrderOpen(false);
+    // setLocationOpen(false);
+    // setPaymentOpen(false);
     setSelectedItem(null);
+  };
+
+  const closeOrderListModal = () => {
     setOrderOpen(false);
+  };
+
+  const closeLocationSelectModal = () => {
+    setLocationOpen(false);
+  };
+
+  const closePaymentOpenModal = () => {
+    setPaymentOpen(false);
   };
 
   const handleOrderTestClick = () => {
     setOrderOpen(true);
+  };
+
+  const handleOrderComplete = (items) => {
+    setOrderItems(items);
+    setOrderOpen(false);
+    setLocationOpen(true);
+  };
+
+  const handleNextToLocation = () => {
+    setOrderOpen(false);
+    setLocationOpen(true);
+  };
+
+  const handleLocationSelect = () => {
+    setLocationOpen(false);
+    setPaymentOpen(true);
+  };
+
+  const handlePaymentComplete = () => {
+    setPaymentOpen(false);
   };
 
   return (
@@ -46,14 +84,29 @@ const MenuItem = ({ category }) => {
         ))}
       </ul>
 
-      {isOrderOpen && <OrderListModal closeModal={closeModal} />}
-
       {isOpen && (
         <ItemOptionModal
           category={category}
           selectedItem={selectedItem}
           closeModal={closeModal}
         />
+      )}
+
+      {isOrderOpen && (
+        <OrderListModal
+          onComplete={handleOrderComplete}
+          onNext={handleNextToLocation} // onNext 전달
+          closeModal={closeOrderListModal}
+        />
+      )}
+      {isLocationOpen && (
+        <LocationSelect
+          onSelect={handleLocationSelect}
+          closeModal={closeLocationSelectModal}
+        />
+      )}
+      {isPaymentOpen && (
+        <Payment orderItems={orderItems} onComplete={handlePaymentComplete} />
       )}
     </div>
   );

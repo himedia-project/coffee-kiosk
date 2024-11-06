@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PaymentComplete from "./PaymentComplete";
 
-const Payment = ({ orderItems }) => {
+const Payment = ({ orderItems, closeModal }) => {
   const [isPaid, setIsPaid] = useState(false);
   const [installments, setInstallments] = useState(1); // 할부 개월 상태
   const [cardNumber, setCardNumber] = useState(""); // 카드 번호 상태
@@ -63,7 +63,7 @@ const Payment = ({ orderItems }) => {
               />
             </div>
 
-            <button
+            {/* <button
               onClick={handlePayment}
               className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded"
             >
@@ -71,7 +71,21 @@ const Payment = ({ orderItems }) => {
             </button>
             <Link to="/" className="block mt-2 text-center text-blue-500">
               홈으로 이동
-            </Link>
+            </Link> */}
+            <div className="mt-4 flex justify-between">
+              <button
+                className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
+                onClick={closeModal}
+              >
+                취소
+              </button>
+              <button
+                className="bg-green-500 text-white px-4 py-2 rounded"
+                onClick={handlePayment}
+              >
+                결제하기
+              </button>
+            </div>
           </div>
         ) : (
           <PaymentComplete totalAmount={totalAmount} />
