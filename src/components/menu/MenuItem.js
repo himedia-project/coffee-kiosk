@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import itemData from "../../data/itemData";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
+=======
+import ItemOptionModal from "../modal/ItemOptionModal";
+>>>>>>> c14d9b4babf9ba5c8b57d4431df9631d3486c470
 
 const MenuItem = ({ category }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -16,19 +20,11 @@ const MenuItem = ({ category }) => {
     setIsOpen(false);
     setSelectedItem(null);
   };
-  const handleOrderSubmit = () => {// `orderItems` 데이터를 `navigate`로 전달
-    const orderItem = {
-      
-      temperature: document.querySelector('input[name="temperature"]:checked').value,
-      density: document.querySelector('input[name="density"]:checked').value,
-    };
-    navigate("/order-list", { state: { orderItem } });
-  };
 
   return (
-    <div className="text-center p-5 bg-gray-100">
+    <div className="flex flex-col items-center text-center p-5 bg-gray-100 overflow-y-auto w-full h-[600px]">
       <h2 className="text-2xl font-bold mb-5">{category} 메뉴</h2>
-      <ul className="flex flex-wrap justify-center list-none p-0">
+      <ul className="flex flex-wrap justify-center list-none p-0 w-[1280px]">
         {itemData[category]?.map((item) => (
           <li
             key={item.id}
@@ -41,65 +37,18 @@ const MenuItem = ({ category }) => {
               className="w-24 h-auto mx-auto"
             />
             <span className="text-lg mt-2">{item.name}</span>
-            <span className="text-sm text-gray-600">{item.price}원</span>
+            <span className="text-sm text-gray-600 mb-2">{item.price}원</span>
           </li>
         ))}
       </ul>
 
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-5 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-4">{selectedItem.name}</h3>
-            <p className="text-lg">{selectedItem.price}원</p>
-            <div className="mt-4">
-              <h4 className="font-semibold">뜨거운 (HOT) / 차가운 (ICE)</h4>
-              <div>
-                <label>
-                  <input type="radio" name="temperature" value="hot" /> 뜨거운
-                  (HOT)
-                </label>
-                <label className="ml-4">
-                  <input type="radio" name="temperature" value="ice" /> 차가운
-                  (ICE)
-                </label>
-              </div>
-            </div>
-            <div className="mt-4">
-              <h4 className="font-semibold">농도 (선택, 단일 선택)</h4>
-              <div>
-                <label>
-                  <input type="radio" name="density" value="basic" /> 기본
-                  (+0원)
-                </label>
-                <label className="ml-4">
-                  <input type="radio" name="density" value="light" /> 연하게
-                  (+0원)
-                </label>
-                <label className="ml-4">
-                  <input type="radio" name="density" value="extra" /> 진하게
-                  (+500원)
-                </label>
-                <label className="ml-4">
-                  <input type="radio" name="density" value="double" /> 2배
-                  진하게 (+1000원)
-                </label>
-              </div>
-            </div>
-            <div className="mt-4 flex justify-between">
-              <button
-                onClick={closeModal}
-                className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
-              >
-                취소
-              </button>
-              <button 
-              onClick={handleOrderSubmit}
-              className="bg-green-500 text-white px-4 py-2 rounded">
-                주문담기
-              </button>
-            </div>
-          </div>
-        </div>
+
+        <ItemOptionModal
+          category={category}
+          selectedItem={selectedItem}
+          closeModal={closeModal}
+        />
       )}
     </div>
   );
