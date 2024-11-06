@@ -1,12 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { clearCart, removeFromCart } from "../../store";
+import { addToCart, clearCart, removeFromCart } from "../../slices/cartSlice";
 
 const Cart = () => {
+  const handleChangeDensity = (density) => {
+    switch (density) {
+      case "basic":
+        return "기본";
+      case "light":
+        return "연하게";
+      case "extra":
+        return "진하게";
+      default:
+        return "2배 진하게";
+    }
+  };
+
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const totalAmount = useSelector((state) => state.cart.totalAmount);
+
   //총 주문금액
   const dispatch = useDispatch();
 
@@ -22,11 +36,23 @@ const Cart = () => {
     console.log("remove");
   };
 
+  // 장바구니 항목 추가 함수
+  const addToCartHandler = (item) => {
+    dispatch(
+      addToCart({
+        item,
+        temperature: item.temperature,
+        density: item.density,
+      })
+    );
+  };
+
   //메뉴별 옵션 추가 된 금액
   const itemPrice = (item) => {
     const basePrice = item.price;
-    const densityPrice = item.density === 'extra' ? 500 : item.density === 'double' ? 1000 : 0 
-    
+    const densityPrice =
+      item.density === "extra" ? 500 : item.density === "double" ? 1000 : 0;
+
     return basePrice + densityPrice;
   };
 
@@ -35,26 +61,46 @@ const Cart = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const deleteAll = () =>{
-   dispatch(clearCart());
-  }
-  
+  const deleteAll = () => {
+    dispatch(clearCart());
+  };
+
   return (
-    <div>
-      <h2>장바구니</h2>
-      <ul>
+    <div className="bg-white-100 p-6 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-6 text-center">장바구니</h2>
+      <ul className="list-none p-0 flex flex-wrap justify-center">
         {cartItems.map((item) => (
-          <li key={`${item.id}-${item.temperature}-${item.density}`}>
-            {item.name} - 수량: {item.quantity} <br />
-            가격 : {itemPrice(item)} 원 <br />
-            온도 선택 : {item.temperature}
-            <br />
-            옵션 선택 : {item.density}
-            <br />
-            <button onClick={() => removeCartHandler(item.id , item.temperature, item.density)}>삭제하기</button>
+          <li
+            key={`${item.id}-${item.temperature}-${item.density}`}
+            className="m-4 border border-gray-300 rounded-lg overflow-hidden w-48 bg-white shadow-md transition-transform transform hover:scale-105"
+          >
+            <img
+              src={item.url}
+              alt={item.name}
+              className="w-full h-32 object-cover"
+            />
+            <div className="p-4">
+              {item.name} / 수량: {item.quantity} <br />
+              가격 : {itemPrice(item)} 원 <br />
+              온도 선택 :{" "}
+              {item.temperature === "hot" ? "뜨거운(HOT)" : "차가운(ICE)"}
+              <br />
+              옵션 선택 : {handleChangeDensity(item.density)}
+              <br />
+              <button
+                onClick={() =>
+                  removeCartHandler(item.id, item.temperature, item.density)
+                }
+              >
+                삭제하기
+              </button>
+              &nbsp;
+              <button onClick={() => addToCartHandler(item)}>추가하기</button>
+            </div>
           </li>
         ))}
       </ul>
+
       <button onClick={deleteAll}>전체삭제</button>
       <p>총 수량: {totalQuantity()} </p>
       <p>주문 금액 : {totalAmount}</p>

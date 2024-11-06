@@ -1,11 +1,11 @@
 import React from "react";
 import itemData from "../../data/itemData";
 
-const MenuItem = ({ category, onItemClick, onOrderTestClick }) => {
+const MenuItem = ({ category, onItemClick }) => {
   return (
     <div className="flex flex-col items-center text-center p-5 bg-gray-100 overflow-y-auto w-full h-[600px]">
       <h2 className="text-2xl font-bold mb-5">{category} 메뉴</h2>
-      <button onClick={onOrderTestClick}>주문 테스트 버튼</button>
+
       <ul className="flex flex-wrap justify-center list-none p-0 w-[1280px]">
         {itemData[category]?.map((item, index) => (
           <li
