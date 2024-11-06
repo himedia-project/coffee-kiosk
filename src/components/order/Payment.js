@@ -26,8 +26,8 @@ const Payment = ({ orderItems, closeModal }) => {
       <div className="bg-white p-5 rounded-lg shadow-lg w-96">
         {!isPaid ? (
           <div>
-            <h2 className="text-xl font-bold mb-4">결제창</h2>
-            <ul className="flex flex-col space-y-2">
+            <h2 className="text-2xl text-center font-bold mb-4">결제창</h2>
+            <ul className="flex flex-col space-y-2 mb-3">
               {data.map((item, index) => (
                 <li key={index} className="flex justify-between">
                   <span>
@@ -37,6 +37,7 @@ const Payment = ({ orderItems, closeModal }) => {
                 </li>
               ))}
             </ul>
+            <hr />
             <h3 className="mt-4 font-bold">총 결제 금액: {totalAmount}원</h3>
 
             {/* 할부 개월 입력 필드 */}

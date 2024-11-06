@@ -10,9 +10,9 @@ const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-5 rounded-lg shadow-lg w-128">
-        <h2 className="text-xl font-bold mb-4 text-red-600">
-          주문정보를 확인해 주세요
+      <div className="bg-white p-5 rounded-lg shadow-lg w-150">
+        <h2 className="text-2xl text-center font-bold mb-4 text-red-600">
+          주문정보
         </h2>
         <table className="w-full border-collapse">
           <thead>

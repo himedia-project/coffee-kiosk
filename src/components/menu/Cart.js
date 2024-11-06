@@ -96,7 +96,9 @@ const Cart = ({ onMoveToOrderList }) => {
                     alt={item.name}
                     className="w-24 h-auto mx-auto"
                   />
-                  <h3 className="text-lg font-semibold mt-2">{item.name}</h3>
+                  <h3 className="text-lg text-center font-semibold mt-2">
+                    {item.name}
+                  </h3>
                   <div className="display inline-flex">
                     <button
                       className="mr-2"
