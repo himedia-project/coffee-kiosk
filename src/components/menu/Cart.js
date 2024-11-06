@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart, clearCart, removeFromCart } from "../../slices/cartSlice";
 
 const Cart = ({ onMoveToOrderList }) => {
@@ -71,40 +70,65 @@ const Cart = ({ onMoveToOrderList }) => {
         장바구니
       </h2>
       <div className="overflow-x-auto">
-        <ul className="list-none p-0 flex space-x-4 m-2">
-          {cartItems.map((item) => (
-            <li
-              key={`${item.id}-${item.temperature}-${item.density}`}
-              className="flex-shrink-0 border border-gray-300 rounded-lg bg-white shadow-md transition-transform transform hover:scale-105 relative w-48"
-            >
-              <button
-                onClick={() =>
-                  removeCartHandler(item.id, item.temperature, item.density)
-                }
-                className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+        {cartItems.length === 0 ? (
+          <div className="text-center text-gray-400 mt-20 mb-20">
+            {" "}
+            장바구니에 상품이 없습니다.
+          </div>
+        ) : (
+          <ul className="list-none p-0 flex space-x-4 m-2">
+            {cartItems.map((item) => (
+              <li
+                key={`${item.id}-${item.temperature}-${item.density}`}
+                className="flex-shrink-0 border border-gray-300 rounded-lg bg-white shadow-md transition-transform transform hover:scale-105 relative w-48"
               >
-                ❌
-              </button>
-              <div className="flex flex-col items-center p-4">
-                <img
-                  src={item.url}
-                  alt={item.name}
-                  className="w-24 h-auto mx-auto"
-                />
-                <h3 className="text-lg font-semibold mt-2">{item.name}</h3>
-                <p className="text-sm">수량: {item.quantity}</p>
-                <p className="text-sm">가격: {itemPrice(item)} 원</p>
-                <p className="text-sm">
-                  온도 선택:{" "}
-                  {item.temperature === "hot" ? "뜨거운(HOT)" : "차가운(ICE)"}
-                </p>
-                <p className="text-sm">
-                  옵션 선택: {handleChangeDensity(item.density)}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+                <button
+                  onClick={() =>
+                    removeCartHandler(item.id, item.temperature, item.density)
+                  }
+                  className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                >
+                  ❌
+                </button>
+                <div className="flex flex-col items-center p-4">
+                  <img
+                    src={item.url}
+                    alt={item.name}
+                    className="w-24 h-auto mx-auto"
+                  />
+                  <h3 className="text-lg font-semibold mt-2">{item.name}</h3>
+                  <p className="text-sm">수량: {item.quantity}</p>
+                  <p className="text-sm">가격: {itemPrice(item)} 원</p>
+                  <p className="text-sm">
+                    온도 선택:{" "}
+                    {item.temperature === "hot" ? "뜨거운(HOT)" : "차가운(ICE)"}
+                  </p>
+                  <p className="text-sm">
+                    옵션 선택: {handleChangeDensity(item.density)}
+                  </p>
+                  <p>
+                    <button
+                      onClick={() =>
+                        removeCartHandler(
+                          item.id,
+                          item.temperature,
+                          item.density
+                        )
+                      }
+                    >
+                      삭제하기
+                    </button>
+                  </p>
+                  <p>
+                    <button onClick={() => addToCartHandler(item)}>
+                      추가하기
+                    </button>
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <div className="mt-6">
