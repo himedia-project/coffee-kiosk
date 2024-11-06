@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const locations = ["매장", "포장"];
 
 const LocationSelect = ({ onSelect, closeModal }) => {
   console.log("LocationSelect open!");
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-5 rounded-lg shadow-lg w-96">
@@ -24,21 +25,12 @@ const LocationSelect = ({ onSelect, closeModal }) => {
             </li>
           ))}
         </ul>
-        <div className="mt-4 flex justify-between">
+        <div className="mt-4 flex justify-center">
           <button
             className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
             onClick={closeModal}
           >
             취소
-          </button>
-          <button
-            className="bg-green-500 text-white px-4 py-2 rounded"
-            onClick={() => {
-              onSelect();
-              closeModal();
-            }}
-          >
-            다음
           </button>
         </div>
       </div>

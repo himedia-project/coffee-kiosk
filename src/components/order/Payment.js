@@ -4,7 +4,7 @@ import PaymentComplete from "./PaymentComplete";
 
 const Payment = ({ orderItems, closeModal }) => {
   const [isPaid, setIsPaid] = useState(false);
-  const [installments, setInstallments] = useState(1); // 할부 개월 상태
+  const [installments, setInstallments] = useState(0); // 초기값을 0으로 변경
   const [cardNumber, setCardNumber] = useState(""); // 카드 번호 상태
 
   const handlePayment = () => {
@@ -42,13 +42,16 @@ const Payment = ({ orderItems, closeModal }) => {
             {/* 할부 개월 입력 필드 */}
             <div className="mt-4">
               <label className="block mb-1">할부 개월:</label>
-              <input
-                type="number"
+              <select
                 value={installments}
                 onChange={(e) => setInstallments(e.target.value)}
                 className="border rounded w-full p-2"
-                min="1"
-              />
+              >
+                <option value={0}>일시불</option>
+                <option value={1}>1개월</option>
+                <option value={2}>2개월</option>
+                <option value={3}>3개월</option>
+              </select>
             </div>
 
             {/* 카드 번호 입력 필드 */}
@@ -63,15 +66,6 @@ const Payment = ({ orderItems, closeModal }) => {
               />
             </div>
 
-            {/* <button
-              onClick={handlePayment}
-              className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded"
-            >
-              결제하기
-            </button>
-            <Link to="/" className="block mt-2 text-center text-blue-500">
-              홈으로 이동
-            </Link> */}
             <div className="mt-4 flex justify-between">
               <button
                 className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
