@@ -1,71 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import itemData from "../../data/itemData";
-import ItemOptionModal from "../modal/ItemOptionModal";
-import OrderListModal from "../modal/OrderListModal";
-import LocationSelect from "../order/LocationSelect";
-import Payment from "../order/Payment";
 
-const MenuItem = ({ category }) => {
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOrderOpen, setOrderOpen] = useState(false);
-  const [isLocationOpen, setLocationOpen] = useState(false);
-  const [isPaymentOpen, setPaymentOpen] = useState(false);
-  const [orderItems, setOrderItems] = useState([]);
-
-  const handleItemClick = (item) => {
-    setSelectedItem(item);
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-    // setOrderOpen(false);
-    // setLocationOpen(false);
-    // setPaymentOpen(false);
-    setSelectedItem(null);
-  };
-
-  const closeOrderListModal = () => {
-    setOrderOpen(false);
-  };
-
-  const closeLocationSelectModal = () => {
-    setLocationOpen(false);
-  };
-
-  const closePaymentOpenModal = () => {
-    setPaymentOpen(false);
-  };
-
-  const handleOrderTestClick = () => {
-    setOrderOpen(true);
-  };
-
-  const handleOrderComplete = (items) => {
-    setOrderItems(items);
-    setOrderOpen(false);
-    setLocationOpen(true);
-  };
-
-  const handleNextToLocation = () => {
-    setOrderOpen(false);
-    setLocationOpen(true);
-  };
-
-  const handleLocationSelect = () => {
-    setLocationOpen(false);
-    setPaymentOpen(true);
-  };
-
-  const handlePaymentComplete = () => {
-    setPaymentOpen(false);
-  };
-
+const MenuItem = ({ category, onItemClick, onOrderTestClick }) => {
   return (
     <div className="flex flex-col items-center text-center p-5 bg-gray-100 overflow-y-auto w-full h-[600px]">
       <h2 className="text-2xl font-bold mb-5">{category} 메뉴</h2>
-      <button onClick={handleOrderTestClick}>주문 테스트 버튼</button>
+      <button onClick={onOrderTestClick}>주문 테스트 버튼</button>
       <ul className="flex flex-wrap justify-center list-none p-0 w-[1280px]">
         {itemData[category]?.map((item, index) => (
           <li
@@ -73,7 +13,7 @@ const MenuItem = ({ category }) => {
             className={`m-2 border border-gray-300 rounded-lg overflow-hidden w-48 bg-white transition-transform transform hover:scale-105 cursor-pointer flex flex-col items-center ${
               index < 2 ? "opacity-50" : ""
             }`}
-            onClick={() => handleItemClick(item)}
+            onClick={() => onItemClick(item)}
           >
             <img
               src={item.url}
@@ -100,33 +40,6 @@ const MenuItem = ({ category }) => {
           </li>
         ))}
       </ul>
-      {isOpen && (
-        <ItemOptionModal
-          category={category}
-          selectedItem={selectedItem}
-          closeModal={closeModal}
-        />
-      )}
-      {isOrderOpen && (
-        <OrderListModal
-          onComplete={handleOrderComplete}
-          onNext={handleNextToLocation} // onNext 전달
-          closeModal={closeOrderListModal}
-        />
-      )}
-      {isLocationOpen && (
-        <LocationSelect
-          onSelect={handleLocationSelect}
-          closeModal={closeLocationSelectModal}
-        />
-      )}
-      {isPaymentOpen && (
-        <Payment
-          orderItems={orderItems}
-          onComplete={handlePaymentComplete}
-          closeModal={closePaymentOpenModal}
-        />
-      )}
     </div>
   );
 };

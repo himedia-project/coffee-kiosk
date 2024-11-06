@@ -6,40 +6,42 @@ const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-5 rounded-lg shadow-lg w-96">
+      <div className="bg-white p-5 rounded-lg shadow-lg w-128">
         {isCoffee ? (
           <>
-            <h3 className="text-xl font-bold mb-4">{selectedItem.name}</h3>
-            <p className="text-lg">{selectedItem.price}원</p>
-            <div className="mt-4">
+            <h3 className="text-xl font-bold mb-4 text-center">
+              {selectedItem.name}
+            </h3>
+            <p className="text-lg text-center">{selectedItem.price}원</p>
+            <div className="mt-4 text-center">
               <h4 className="font-semibold">뜨거운 (HOT) / 차가운 (ICE)</h4>
-              <div>
-                <label>
+              <div className="flex justify-center">
+                <label className="mr-4">
                   <input type="radio" name="temperature" value="hot" /> 뜨거운
                   (HOT)
                 </label>
-                <label className="ml-4">
+                <label>
                   <input type="radio" name="temperature" value="ice" /> 차가운
                   (ICE)
                 </label>
               </div>
             </div>
-            <div className="mt-4">
+            <div className="mt-4 text-center">
               <h4 className="font-semibold">농도 (선택, 단일 선택)</h4>
-              <div>
-                <label>
+              <div className="flex justify-center">
+                <label className="mr-4">
                   <input type="radio" name="density" value="basic" /> 기본
                   (+0원)
                 </label>
-                <label className="ml-4">
+                <label className="mr-4">
                   <input type="radio" name="density" value="light" /> 연하게
                   (+0원)
                 </label>
-                <label className="ml-4">
+                <label className="mr-4">
                   <input type="radio" name="density" value="extra" /> 진하게
                   (+500원)
                 </label>
-                <label className="ml-4">
+                <label>
                   <input type="radio" name="density" value="double" /> 2배
                   진하게 (+1000원)
                 </label>
@@ -48,15 +50,16 @@ const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
           </>
         ) : (
           <div className="mt-4 flex flex-col items-center">
-            <p>선택하신 상품의 옵션을 선택해주세요.</p>
+            <p className="text-center">선택하신 상품의 옵션을 선택해주세요.</p>
             <img
               src={selectedItem.url}
               alt={selectedItem.name}
               className="w-24 h-auto mb-2"
-            />{" "}
-            <h3 className="text-xl font-bold mb-4">{selectedItem.name}</h3>
-            <p className="text-lg">{selectedItem.price}원</p>
-            {/* 이미지 추가 */}
+            />
+            <h3 className="text-xl font-bold mb-4 text-center">
+              {selectedItem.name}
+            </h3>
+            <p className="text-lg text-center">{selectedItem.price}원</p>
           </div>
         )}
 
