@@ -145,7 +145,6 @@ const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
           >
             주문담기
           </button>
-          <Link to="/Cart">장바구니 목록 확인하기</Link>
         </div>
       </div>
     </div>
