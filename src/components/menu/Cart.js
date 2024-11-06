@@ -66,12 +66,12 @@ const Cart = ({ onMoveToOrderList }) => {
   };
 
   return (
-    <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+    <div className="bg-white p-6 rounded-lg shadow-lg mt-5">
       <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
         장바구니
       </h2>
       <div className="overflow-x-auto">
-        <ul className="list-none p-0 flex space-x-4">
+        <ul className="list-none p-0 flex space-x-4 m-2">
           {cartItems.map((item) => (
             <li
               key={`${item.id}-${item.temperature}-${item.density}`}
