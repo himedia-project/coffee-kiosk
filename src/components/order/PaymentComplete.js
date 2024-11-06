@@ -1,16 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const PaymentComplete = ({ totalAmount }) => {
   const navigate = useNavigate();
+  const [countdown, setCountdown] = useState(5);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate("/");
-    }, 5000); // 5초 후에 메인 화면으로 이동
+    const timer = setInterval(() => {
+      setCountdown((countdown) => countdown - 1);
+    }, 1000); // 초 단위 카운트 다운
 
-    return () => clearTimeout(timer); // 타이머를 정리
-  }, [navigate]);
+    return () => clearInterval(timer); // 타이머를 정리
+  }, []);
+
+  useEffect(() => {
+    if (countdown === 0) {
+      navigate("/");
+    }
+  }, [countdown, navigate]);
 
   return (
     <div>
@@ -26,6 +33,8 @@ const PaymentComplete = ({ totalAmount }) => {
         <label>카드 번호: </label>
         <span>****-****-****-****</span> {/* 카드 번호 형식으로 표시 */}
       </div>
+      <hr />
+      <h1>{countdown}</h1>
     </div>
   );
 };
