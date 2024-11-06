@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Category = ({ setSelectedCategory, selectedCategory }) => {
@@ -9,6 +9,8 @@ const Category = ({ setSelectedCategory, selectedCategory }) => {
     { name: "디저트", path: "/menu/디저트" },
   ];
 
+
+  
   return (
     <div className="bg-white p-4">
       <ul className="flex justify-center space-x-4">

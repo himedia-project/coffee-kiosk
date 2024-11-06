@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import itemData from "../../data/itemData";
+import { useDispatch ,useSelector } from "react-redux";
+import { addToCart } from "../../store";
 import ItemOptionModal from "../modal/ItemOptionModal";
 import OrderListModal from "../modal/OrderListModal";
 import LocationSelect from "../order/LocationSelect";
@@ -8,10 +10,27 @@ import Payment from "../order/Payment";
 const MenuItem = ({ category }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [isOrderOpen, setOrderOpen] = useState(false);
-  const [isLocationOpen, setLocationOpen] = useState(false);
-  const [isPaymentOpen, setPaymentOpen] = useState(false);
-  const [orderItems, setOrderItems] = useState([]);
+
+
+  const [selectedTemperature, setSelectedTemperature] = useState("hot"); // 기본값 설정
+  const [selectedDensity, setSelectedDensity] = useState("basic");
+  const dispatch = useDispatch();
+
+  const totalAmount = () => {
+    const basePrice = selectedItem.price;
+    const densityPrice =
+      selectedDensity === "extra"
+        ? 500
+        : selectedDensity === "double"
+        ? 1000
+        : 0;
+    //선택된 농도가 extra면 500 => (1샷추가)
+    //선택된 농도가 extra가 아니라면 1000 =>(2배 진하게)
+    //앞의 두 조건이 둘다 거짓이라면 0
+    return basePrice + densityPrice;
+  };
+  //densityPrice: 선택된 농도에 따른 추가금액
+
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -24,6 +43,20 @@ const MenuItem = ({ category }) => {
     // setLocationOpen(false);
     // setPaymentOpen(false);
     setSelectedItem(null);
+    setSelectedTemperature("hot"); // 모달 닫을 때 기본값으로 초기화
+    setSelectedDensity("basic");
+  };
+
+ 
+
+  const addToCartHandler = () => {
+    dispatch(addToCart({ 
+      item: selectedItem, 
+      temperature: selectedTemperature, 
+      density: selectedDensity 
+    }));
+    closeModal();
+    console.log("add");
   };
 
   const closeOrderListModal = () => {
