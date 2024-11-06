@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, clearCart, removeFromCart } from "../../slices/cartSlice";
 
-const Cart = () => {
+const Cart = ({ onMoveToOrderList }) => {
   const handleChangeDensity = (density) => {
     switch (density) {
       case "basic":
@@ -104,7 +104,9 @@ const Cart = () => {
       <button onClick={deleteAll}>전체삭제</button>
       <p>총 수량: {totalQuantity()} </p>
       <p>주문 금액 : {totalAmount}</p>
-      <Link to="/orders">주문 목록으로 이동</Link>
+      <button onClick={() => onMoveToOrderList(cartItems)}>
+        주문목록으로 이동
+      </button>
     </div>
   );
 };

@@ -46,8 +46,7 @@ const MenuPage = () => {
 
   const handleOrderComplete = (items) => {
     setOrderItems(items);
-    setOrderOpen(false);
-    setLocationOpen(true);
+    setOrderOpen(true);
   };
 
   const handleNextToLocation = () => {
@@ -74,7 +73,7 @@ const MenuPage = () => {
       {selectedCategory ? (
         <>
           <MenuItem category={selectedCategory} onItemClick={handleItemClick} />
-          <Cart />
+          <Cart onMoveToOrderList={handleOrderComplete} />
         </>
       ) : (
         <p>카테고리를 선택하세요.</p>
@@ -89,8 +88,9 @@ const MenuPage = () => {
       {isOrderOpen && (
         <OrderListModal
           onComplete={handleOrderComplete}
-          onNext={handleNextToLocation} // onNext 전달
+          onNext={handleNextToLocation}
           closeModal={closeOrderListModal}
+          dummyData={orderItems}
         />
       )}
       {isLocationOpen && (

@@ -1,13 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const dummyData = [
-  { name: "딸기라떼", quantity: 1, price: 3500 },
-  { name: "(HOT) 아메리카노", quantity: 1, price: 1500 },
-  { name: "사과생크림와플", quantity: 1, price: 3500 },
-]; // 말 그대로 시험용 더미 데이터
-
-const OrderListModal = ({ closeModal, onComplete, onNext }) => {
+const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
   const totalQuantity = dummyData.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = dummyData.reduce(
     (acc, item) => acc + item.price * item.quantity,
