@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const dummyData = [
   { name: "딸기라떼", quantity: 1, price: 3500 },
@@ -52,9 +53,11 @@ const OrderListModal = ({ closeModal }) => {
           >
             취소
           </button>
-          <button className="bg-green-500 text-white px-4 py-2 rounded">
-            다음
-          </button>
+          <Link to="/location">
+            <button className="bg-green-500 text-white px-4 py-2 rounded">
+              다음
+            </button>
+          </Link>
         </div>
       </div>
     </div>

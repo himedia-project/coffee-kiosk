@@ -8,9 +8,9 @@ const PaymentComplete = ({ totalAmount }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown((countdown) => countdown - 1);
-    }, 1000); // 초 단위 카운트 다운
+    }, 1000);
 
-    return () => clearInterval(timer); // 타이머를 정리
+    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -20,21 +20,17 @@ const PaymentComplete = ({ totalAmount }) => {
   }, [countdown, navigate]);
 
   return (
-    <div>
-      <h2>결제가 완료되었습니다!</h2>
-      <h3>총 결제 금액: {totalAmount}원</h3>
-
-      <div>
-        <label>결제 방법: </label>
-        <span>일시불</span> {/* "일시불" 고정 표시 */}
-      </div>
-
-      <div>
-        <label>카드 번호: </label>
-        <span>****-****-****-****</span> {/* 카드 번호 형식으로 표시 */}
-      </div>
-      <hr />
-      <h1>{countdown}</h1>
+    <div className="flex flex-col items-center justify-center h-screen bg-green-100">
+      <h2 className="text-2xl font-bold text-gray-800">
+        결제가 완료되었습니다!
+      </h2>
+      <h2 className="text-xl text-gray-600">이용해 주셔서 감사합니다.</h2>
+      <img src="/card_pay_icon.png" alt="Payment Icon" className="mb-4" />
+      <hr className="my-4 w-full border-gray-300" />
+      <h2 className="text-lg text-gray-700">
+        결제 완료 화면은 잠시 후 자동으로 닫힙니다.
+      </h2>
+      <h1 className="text-5xl font-extrabold text-red-600">{countdown}</h1>
     </div>
   );
 };
