@@ -23,9 +23,9 @@ const OrderListModal = ({ closeModal, onComplete, onNext }) => {
         <table className="w-full border-collapse">
           <thead>
             <tr>
-              <th className="border-b text-left pb-2">상품명</th>
-              <th className="border-b text-left pb-2">수량</th>
-              <th className="border-b text-left pb-2">가격</th>
+              <th className="border-b text-center pb-2">상품명</th>
+              <th className="border-b text-center pb-2">수량</th>
+              <th className="border-b text-center pb-2">가격</th>
             </tr>
           </thead>
           <tbody>
