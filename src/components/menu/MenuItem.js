@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import itemData from "../../data/itemData";
 import ItemOptionModal from "../modal/ItemOptionModal";
+import OrderListModal from "../modal/OrderListModal";
 
 const MenuItem = ({ category }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
- 
+
+  const [isOrderOpen, setOrderOpen] = useState(false);
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -15,11 +17,17 @@ const MenuItem = ({ category }) => {
   const closeModal = () => {
     setIsOpen(false);
     setSelectedItem(null);
+    setOrderOpen(false);
+  };
+
+  const handleOrderTestClick = () => {
+    setOrderOpen(true);
   };
 
   return (
     <div className="flex flex-col items-center text-center p-5 bg-gray-100 overflow-y-auto w-full h-[600px]">
       <h2 className="text-2xl font-bold mb-5">{category} 메뉴</h2>
+      <button onClick={handleOrderTestClick}>주문 테스트 버튼</button>
       <ul className="flex flex-wrap justify-center list-none p-0 w-[1280px]">
         {itemData[category]?.map((item) => (
           <li
@@ -38,8 +46,9 @@ const MenuItem = ({ category }) => {
         ))}
       </ul>
 
-      {isOpen && (
+      {isOrderOpen && <OrderListModal closeModal={closeModal} />}
 
+      {isOpen && (
         <ItemOptionModal
           category={category}
           selectedItem={selectedItem}
