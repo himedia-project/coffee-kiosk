@@ -68,7 +68,7 @@ const Cart = ({ onMoveToOrderList }) => {
   return (
     <div className="bg-white-100 p-6 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">장바구니</h2>
-      <ul className="list-none p-0 flex flex-wrap justify-center">
+      <ul className="list-none p-0 flex flex-wrap justify-start overflow-x-scroll">
         {cartItems.map((item) => (
           <li
             key={`${item.id}-${item.temperature}-${item.density}`}
@@ -80,6 +80,14 @@ const Cart = ({ onMoveToOrderList }) => {
               className="w-full h-32 object-cover"
             />
             <div className="p-4">
+              <button
+                onClick={() =>
+                  removeCartHandler(item.id, item.temperature, item.density)
+                }
+                className="absolute top-2 right-2 text-red-500"
+              >
+                ❌
+              </button>
               {item.name} / 수량: {item.quantity} <br />
               가격 : {itemPrice(item)} 원 <br />
               온도 선택 :{" "}
@@ -87,14 +95,6 @@ const Cart = ({ onMoveToOrderList }) => {
               <br />
               옵션 선택 : {handleChangeDensity(item.density)}
               <br />
-              <button
-                onClick={() =>
-                  removeCartHandler(item.id, item.temperature, item.density)
-                }
-              >
-                삭제하기
-              </button>
-              &nbsp;
               <button onClick={() => addToCartHandler(item)}>추가하기</button>
             </div>
           </li>
