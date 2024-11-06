@@ -106,7 +106,11 @@ const MenuItem = ({ category }) => {
         />
       )}
       {isPaymentOpen && (
-        <Payment orderItems={orderItems} onComplete={handlePaymentComplete} />
+        <Payment
+          orderItems={orderItems}
+          onComplete={handlePaymentComplete}
+          closeModal={closePaymentOpenModal}
+        />
       )}
     </div>
   );
