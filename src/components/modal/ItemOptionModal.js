@@ -72,7 +72,7 @@ const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
                 </label>
               </div>
             </div>
-            <div className="mt-4 text-center">
+            <div className="mt-4">
               <h4 className="font-semibold">농도 (선택, 단일 선택)</h4>
               <div>
                 <label>
