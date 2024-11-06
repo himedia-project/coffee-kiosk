@@ -9,8 +9,6 @@ const Category = ({ setSelectedCategory, selectedCategory }) => {
     { name: "디저트", path: "/menu/디저트" },
   ];
 
-
-  
   return (
     <div className="bg-white p-4">
       <ul className="flex justify-center space-x-4">
@@ -18,7 +16,7 @@ const Category = ({ setSelectedCategory, selectedCategory }) => {
           <li key={category.name} className="flex-1">
             <button
               onClick={() => setSelectedCategory(category.name)}
-              className={`block text-center py-2 px-4 rounded-lg border border-gray-300 transition w-full ${
+              className={`block text-xl text-center py-2 px-4 rounded-lg border border-gray-300 transition w-full ${
                 selectedCategory === category.name
                   ? "bg-green-500 text-white"
                   : "hover:bg-green-500 hover:text-white"

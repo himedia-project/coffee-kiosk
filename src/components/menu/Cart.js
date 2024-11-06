@@ -90,15 +90,20 @@ const Cart = ({ onMoveToOrderList }) => {
                 >
                   ❌
                 </button>
-                <div className="flex flex-col items-center p-4">
+                <div className="flex flex-col items-center p-4 ">
                   <img
                     src={item.url}
                     alt={item.name}
                     className="w-24 h-auto mx-auto"
                   />
-                  <h3 className="text-lg text-center font-semibold mt-2">
+                  {/* ...표시 */}
+                  <h3
+                    className="text-lg text-center font-semibold mt-2 overflow-hidden text-ellipsis whitespace-nowrap"
+                    style={{ minWidth: "0", maxWidth: "100%" }}
+                  >
                     {item.name}
                   </h3>
+
                   <div className="display inline-flex">
                     <button
                       className="mr-2"
@@ -121,13 +126,20 @@ const Cart = ({ onMoveToOrderList }) => {
                     </button>
                   </div>
                   <p className="text-sm">가격: {itemPrice(item)} 원</p>
-                  <p className="text-sm">
-                    온도 선택:{" "}
-                    {item.temperature === "hot" ? "뜨거운(HOT)" : "차가운(ICE)"}
-                  </p>
-                  <p className="text-sm">
-                    옵션 선택: {handleChangeDensity(item.density)}
-                  </p>
+                  {item.id >= 1 &&
+                    item.id < 19 && ( // id가 1~18인 경우에만 온도, 옵션 선택 가능
+                      <>
+                        <p className="text-sm">
+                          온도 선택:{" "}
+                          {item.temperature === "hot"
+                            ? "뜨거운(HOT)"
+                            : "차가운(ICE)"}
+                        </p>
+                        <p className="text-sm">
+                          옵션 선택: {handleChangeDensity(item.density)}
+                        </p>
+                      </>
+                    )}
                 </div>
               </li>
             ))}
