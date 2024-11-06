@@ -1,8 +1,17 @@
 import React from "react";
 
-const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
+const ItemOptionModal = ({
+  category,
+  selectedItem,
+  closeModal,
+  onAddToCart,
+}) => {
   const isCoffee = category === "커피";
   console.log("ItemOptionModal category: ", category);
+
+  const handleAddToCart = () => {
+    onAddToCart(selectedItem); // 장바구니에 추가하는 함수 호출
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -67,7 +76,10 @@ const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
           >
             취소
           </button>
-          <button className="bg-green-500 text-white px-4 py-2 rounded">
+          <button
+            onClick={handleAddToCart}
+            className="bg-green-500 text-white px-4 py-2 rounded"
+          >
             주문담기
           </button>
         </div>

@@ -4,6 +4,35 @@ import ItemOptionModal from "../modal/ItemOptionModal";
 import OrderListModal from "../modal/OrderListModal";
 import LocationSelect from "../order/LocationSelect";
 import Payment from "../order/Payment";
+import CartList from "./CartList";
+
+const initialCartItems = [
+  {
+    id: 15,
+    name: "헤이즐넛아메리카노",
+    price: 2500,
+    url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610110133_1717984893137_AqJAuHaq0t.jpg",
+  },
+
+  {
+    id: 16,
+    name: "큐브라뗴",
+    price: 3800,
+    url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610132523_1717993523193_4mNdkfnxvz.jpg",
+  },
+  {
+    id: 17,
+    name: "콜드브루오리지널",
+    price: 3800,
+    url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610132948_1717993788811_j_eYzA1Esd.jpg",
+  },
+  {
+    id: 18,
+    name: "꿀아메리카노",
+    price: 3800,
+    url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610133054_1717993854434_bTty_9u3br.jpg",
+  },
+];
 
 const MenuItem = ({ category }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -12,6 +41,8 @@ const MenuItem = ({ category }) => {
   const [isLocationOpen, setLocationOpen] = useState(false);
   const [isPaymentOpen, setPaymentOpen] = useState(false);
   const [orderItems, setOrderItems] = useState([]);
+
+  const [cartItems, setCartItems] = useState(initialCartItems); // 장바구니 아이템 상태 추가
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -62,6 +93,11 @@ const MenuItem = ({ category }) => {
     setPaymentOpen(false);
   };
 
+  const handleAddToCart = (item) => {
+    setCartItems((prevItems) => [...prevItems, item]); // 아이템을 장바구니에 추가
+    closeModal();
+  };
+
   return (
     <div className="flex flex-col items-center text-center p-5 bg-gray-100 overflow-y-auto w-full h-[600px]">
       <h2 className="text-2xl font-bold mb-5">{category} 메뉴</h2>
@@ -83,15 +119,19 @@ const MenuItem = ({ category }) => {
           </li>
         ))}
       </ul>
-
+      <div className="mt-auto">
+        {" "}
+        {/* Ensure CartList is at the bottom */}
+        <CartList cartItems={cartItems} /> {/* 장바구니 리스트 렌더링 */}
+      </div>
       {isOpen && (
         <ItemOptionModal
           category={category}
           selectedItem={selectedItem}
+          onAddToCart={handleAddToCart}
           closeModal={closeModal}
         />
       )}
-
       {isOrderOpen && (
         <OrderListModal
           onComplete={handleOrderComplete}
