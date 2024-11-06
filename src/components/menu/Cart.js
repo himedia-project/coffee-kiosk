@@ -66,47 +66,63 @@ const Cart = ({ onMoveToOrderList }) => {
   };
 
   return (
-    <div className="bg-white-100 p-6 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-center">장바구니</h2>
-      <ul className="list-none p-0 flex flex-wrap justify-start overflow-x-scroll">
-        {cartItems.map((item) => (
-          <li
-            key={`${item.id}-${item.temperature}-${item.density}`}
-            className="m-4 border border-gray-300 rounded-lg overflow-hidden w-48 bg-white shadow-md transition-transform transform hover:scale-105"
-          >
-            <img
-              src={item.url}
-              alt={item.name}
-              className="w-full h-32 object-cover"
-            />
-            <div className="p-4">
+    <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+        장바구니
+      </h2>
+      <div className="overflow-x-auto">
+        <ul className="list-none p-0 flex space-x-4">
+          {cartItems.map((item) => (
+            <li
+              key={`${item.id}-${item.temperature}-${item.density}`}
+              className="flex-shrink-0 border border-gray-300 rounded-lg bg-white shadow-md transition-transform transform hover:scale-105 relative w-48"
+            >
               <button
                 onClick={() =>
                   removeCartHandler(item.id, item.temperature, item.density)
                 }
-                className="absolute top-2 right-2 text-red-500"
+                className="absolute top-2 right-2 text-red-500 hover:text-red-700"
               >
                 ❌
               </button>
-              {item.name} / 수량: {item.quantity} <br />
-              가격 : {itemPrice(item)} 원 <br />
-              온도 선택 :{" "}
-              {item.temperature === "hot" ? "뜨거운(HOT)" : "차가운(ICE)"}
-              <br />
-              옵션 선택 : {handleChangeDensity(item.density)}
-              <br />
-              <button onClick={() => addToCartHandler(item)}>추가하기</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+              <div className="flex flex-col items-center p-4">
+                <img
+                  src={item.url}
+                  alt={item.name}
+                  className="w-24 h-auto mx-auto"
+                />
+                <h3 className="text-lg font-semibold mt-2">{item.name}</h3>
+                <p className="text-sm">수량: {item.quantity}</p>
+                <p className="text-sm">가격: {itemPrice(item)} 원</p>
+                <p className="text-sm">
+                  온도 선택:{" "}
+                  {item.temperature === "hot" ? "뜨거운(HOT)" : "차가운(ICE)"}
+                </p>
+                <p className="text-sm">
+                  옵션 선택: {handleChangeDensity(item.density)}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <button onClick={deleteAll}>전체삭제</button>
-      <p>총 수량: {totalQuantity()} </p>
-      <p>주문 금액 : {totalAmount}</p>
-      <button onClick={() => onMoveToOrderList(cartItems)}>
-        주문목록으로 이동
-      </button>
+      <div className="mt-6">
+        <button
+          onClick={deleteAll}
+          className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+        >
+          전체삭제
+        </button>
+        <p className="mt-2 text-lg">총 수량: {totalQuantity()}</p>
+        <p className="text-lg">주문 금액: {totalAmount} 원</p>
+        <button
+          onClick={() => onMoveToOrderList(cartItems)}
+          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+        >
+          주문목록으로 이동
+        </button>
+      </div>
     </div>
   );
 };
