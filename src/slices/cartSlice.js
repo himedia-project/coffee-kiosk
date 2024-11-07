@@ -48,8 +48,12 @@ const cartSlice = createSlice({
 
       if (itemIndex !== -1) {
         const deleteItem = state.cartItems[itemIndex];
-        state.cartItems.splice(itemIndex, 1);
 
+        if (deleteItem.quantity > 1) {
+          deleteItem.quantity -= 1;
+        } else {
+          state.cartItems.splice(itemIndex, 1);
+        }
         const densityPrice =
           deleteItem.density === "extra"
             ? 500
@@ -64,8 +68,31 @@ const cartSlice = createSlice({
       state.cartItems = [];
       state.totalAmount = 0;
     },
+
+    removeItem: (state, action) => {
+      const { id, temperature, density } = action.payload;
+      const itemIndex = state.cartItems.findIndex(
+        (item) =>
+          item.id === id &&
+          item.temperature === temperature &&
+          item.density === density
+      );
+      if (itemIndex !== -1) {
+        const deleteItem = state.cartItems[itemIndex];
+        state.cartItems.splice(itemIndex, 1);
+
+        const densityPrice =
+          deleteItem.density === "extra"
+            ? 500
+            : deleteItem.density === "double"
+            ? 1000
+            : 0;
+        state.totalAmount -= deleteItem.price + densityPrice;
+      }
+    },
   },
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, removeItem } =
+  cartSlice.actions;
 export default cartSlice.reducer;
