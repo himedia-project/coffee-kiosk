@@ -181,7 +181,7 @@ const Cart = ({ onMoveToOrderList }) => {
           </button>
           <button
             onClick={() => onMoveToOrderList(cartItems)}
-            className="text-4xl bg-green-500 text-white py-4 px-6 rounded hover:bg-green-600"
+            className="text-4xl font-bold bg-[#c5e1bb] text-[#2d1b1b] py-4 px-6 rounded hover:bg-[#c5e1bb]"
           >
             결제 하기
           </button>

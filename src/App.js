@@ -11,8 +11,6 @@ import { useState } from "react";
 import { Provider } from "react-redux";
 import store from "./store";
 
-
-
 function App() {
   const [orderItems, setOrderItems] = useState([]);
   return (
@@ -22,23 +20,23 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<MenuPage category="coffee" />} />
-          <Route path="/category" element={<Category />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route
-            path="/orders"
-            element={<OrderList setOrderItems={setOrderItems} />}
-          />
-          <Route path="/location" element={<LocationSelect />} />{" "}
-          {/* 장소 선택 경로 추가 */}
-          <Route
-            path="/payment"
-            element={<Payment orderItems={orderItems} />}
-          />
-        </Routes>{" "}
-      </BrowserRouter>
-   </Provider>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<MenuPage category="coffee" />} />
+            <Route path="/category" element={<Category />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/orders"
+              element={<OrderList setOrderItems={setOrderItems} />}
+            />
+            <Route path="/location" element={<LocationSelect />} />{" "}
+            {/* 장소 선택 경로 추가 */}
+            <Route
+              path="/payment"
+              element={<Payment orderItems={orderItems} />}
+            />
+          </Routes>{" "}
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }
