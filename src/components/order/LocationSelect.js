@@ -20,7 +20,7 @@ const LocationSelect = ({ onSelect, closeModal }) => {
           {locations.map((location) => (
             <button
               key={location.name}
-              className="flex flex-col items-center bg-green-500 text-white px-4 py-2 rounded w-40"
+              className="flex flex-col items-center bg-[#c5e1bb] text-[#2d1b1b] px-4 py-2 rounded w-40"
               onClick={() => {
                 onSelect(location.name);
                 closeModal();

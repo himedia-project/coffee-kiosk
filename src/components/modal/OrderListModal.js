@@ -56,7 +56,7 @@ const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
               onNext(); // onNext 호출
               closeModal();
             }}
-            className="bg-green-500 text-white px-4 py-2 rounded"
+            className="bg-[#c5e1bb] text-[#2d1b1b] px-4 py-2 rounded"
           >
             다음
           </button>

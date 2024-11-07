@@ -139,7 +139,7 @@ const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
             취소
           </button>
           <button
-            className="bg-green-500 text-white px-4 py-2 rounded"
+            className="bg-[#c5e1bb] text-[#2d1b1b] px-4 py-2 rounded"
             onClick={addToCartHandler}
           >
             주문담기

@@ -34,7 +34,7 @@ const PaymentComplete = () => {
           <h2 className="text-xl text-gray-600">이용해 주셔서 감사합니다.</h2>
           <img src="/card_pay_icon.png" alt="Payment Icon" className="mb-4" />
           <hr className="my-4 w-full border-gray-300" />
-          <h2 className="text-lg text-gray-700">
+          <h2 className="text-lg text-center text-gray-700">
             결제 완료 화면은 잠시 후 자동으로 닫힙니다.
           </h2>
           <h1 className="text-5xl font-extrabold text-red-600">{countdown}</h1>
