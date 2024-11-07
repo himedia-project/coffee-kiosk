@@ -1,8 +1,10 @@
 import React from "react";
 import itemData from "../../data/itemData";
+// import SlickSlider from "../../slick/SlickSlider";
 
 const MenuItem = ({ category, onItemClick }) => {
   return (
+    // <SlickSlider category ={category}>
     <div className="flex flex-col items-center text-center p-5 bg-gray-100 overflow-y-auto w-full h-[600px]">
       <h2 className="text-3xl font-bold mb-5">{category} 메뉴</h2>
 
@@ -43,6 +45,7 @@ const MenuItem = ({ category, onItemClick }) => {
         ))}
       </ul>
     </div>
+    // </SlickSlider>
   );
 };
 

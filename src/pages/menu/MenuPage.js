@@ -8,26 +8,34 @@ import LocationSelect from "../../components/order/LocationSelect";
 import Payment from "../../components/order/Payment";
 import Header from "../../layouts/Header";
 import AlertModal from "../../components/modal/AlertModal";
+import itemData from "../../data/itemData";
+
+
 
 const MenuPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isOrderOpen, setOrderOpen] = useState(false);
   const [isLocationOpen, setLocationOpen] = useState(false);
   const [isPaymentOpen, setPaymentOpen] = useState(false);
   const [orderItems, setOrderItems] = useState([]);
-
   const [isEmptyItems, setIsEmptyItems] = useState(false);
+  const [isSoldOutItem, setIsSoldOutItem] = useState(false);
 
   useEffect(() => {
     setSelectedCategory("커피"); // 기본 카테고리 설정
   }, []); // 컴포넌트가 처음 마운트될 때만 실행
 
+  const items = itemData[selectedCategory] || [];
+
   const handleItemClick = (item) => {
-    setSelectedItem(item);
-    setIsOpen(true);
+    if (item.soldOut === true) {
+      setIsSoldOutItem(true);
+    } else {
+      setSelectedItem(item);
+      setIsOpen(true);
+    }
   };
 
   const closeModal = () => {
@@ -60,6 +68,11 @@ const MenuPage = () => {
     setIsEmptyItems(false);
   };
 
+  const soldOutItemAlertModal = () => {
+    //
+    setIsSoldOutItem(false);
+  };
+
   const handleNextToLocation = () => {
     setOrderOpen(false);
     setLocationOpen(true);
@@ -77,6 +90,7 @@ const MenuPage = () => {
   return (
     <div>
       <Header />
+    
       <Category
         setSelectedCategory={setSelectedCategory}
         selectedCategory={selectedCategory}
@@ -88,6 +102,12 @@ const MenuPage = () => {
         </>
       ) : (
         <p>카테고리를 선택하세요.</p>
+      )}
+      {isSoldOutItem && (
+        <AlertModal
+          message={"품절된 상품입니다!"}
+          closeModal={soldOutItemAlertModal}
+        />
       )}
       {isEmptyItems && (
         <AlertModal
