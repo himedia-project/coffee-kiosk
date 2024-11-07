@@ -87,107 +87,127 @@ const Cart = ({ onMoveToOrderList }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg mt-5">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+    <div className="max-w-screen-md mx-auto bg-gray-50 min-h-screen">
+      <h2 className="text-2xl text-center font-bold p-4 text-gray-800 border-b bg-white top-0 z-10">
         장바구니
       </h2>
-      <div className="overflow-x-auto">
+
+      {/* 장바구니 아이템 섹션 */}
+      <div className="p-4">
         {cartItems.length === 0 ? (
-          <div className="text-center text-gray-400 mt-20 mb-20">
-            장바구니에 상품이 없습니다.
+          <div className="flex flex-col items-center justify-center h-48 text-gray-400">
+            <p className="text-lg">장바구니가 비어있습니다</p>
           </div>
         ) : (
-          <ul className="list-none p-0 flex space-x-4 m-2">
+          <div className="space-y-4">
             {cartItems.map((item) => (
-              <li
+              <div
                 key={`${item.id}-${item.temperature}-${item.density}`}
-                className="flex-shrink-0 border border-gray-300 rounded-lg bg-white shadow-md transition-transform transform hover:scale-105 relative w-48"
+                className="bg-white rounded-lg p-4 shadow-sm flex items-center space-x-4"
               >
-                <button
-                  onClick={() =>
-                    removeItemHandler(item.id, item.temperature, item.density)
-                  }
-                  className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-                >
-                  ❌
-                </button>
-                <div className="flex flex-col items-center p-4 ">
-                  <img
-                    src={item.url}
-                    alt={item.name}
-                    className="w-24 h-auto mx-auto"
-                  />
-                  <h3
-                    className="text-lg text-center font-semibold mt-2 overflow-hidden text-ellipsis whitespace-nowrap"
-                    style={{ minWidth: "0", maxWidth: "100%" }}
-                  >
-                    {item.name}
-                  </h3>
-                  <div className="inline-flex items-center">
+                <img
+                  src={item.url}
+                  alt={item.name}
+                  className="w-20 h-20 object-cover rounded-md"
+                />
+
+                <div className="flex-1">
+                  <div className="flex justify-between items-start">
+                    <h3 className="font-medium text-gray-800">{item.name}</h3>
                     <button
-                      className="mr-2"
                       onClick={() =>
-                        removeCartHandler(
+                        removeItemHandler(
                           item.id,
                           item.temperature,
                           item.density
                         )
                       }
+                      className="text-gray-400 hover:text-red-500"
                     >
-                      ➖
-                    </button>
-                    <p className="text-sm">수량: {item.quantity}</p>
-                    <button
-                      className="ml-2"
-                      onClick={() => addToCartHandler(item)}
-                    >
-                      ➕
+                      <span className="sr-only">삭제</span>×
                     </button>
                   </div>
-                  <p className="text-sm">
-                    가격: {(item.quantity*(itemPrice(item))).toLocaleString()} 원
-                  </p>
+
                   {item.id >= 1 && item.id < 19 && (
-                    <>
-                      <p className="text-sm">
-                        온도 선택:{" "}
+                    <div className="text-sm text-gray-600 mt-1">
+                      <p>
                         {item.temperature === "hot"
                           ? "뜨거운(HOT)"
                           : "차가운(ICE)"}
                       </p>
-                      <p className="text-sm">
-                        옵션 선택: {handleChangeDensity(item.density)}
-                      </p>
-                    </>
+                      <p>{handleChangeDensity(item.density)}</p>
+                    </div>
                   )}
+
+                  <div className="flex justify-between items-center mt-3">
+                    <div className="flex items-center space-x-3">
+                      <button
+                        className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center"
+                        onClick={() =>
+                          removeCartHandler(
+                            item.id,
+                            item.temperature,
+                            item.density
+                          )
+                        }
+                      >
+                        <span className="text-gray-600">-</span>
+                      </button>
+                      <span className="w-8 text-center">{item.quantity}</span>
+                      <button
+                        className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center"
+                        onClick={() => addToCartHandler(item)}
+                      >
+                        <span className="text-gray-600">+</span>
+                      </button>
+                    </div>
+                    <p className="font-medium text-gray-800">
+                      {(item.quantity * itemPrice(item)).toLocaleString()}원
+                    </p>
+                  </div>
                 </div>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
-      <div className="mt-6 flex justify-end items-center space-x-4">
-        <div className="flex flex-col items-end mr-4">
-          <p className="text-xl font-bold mb-2">
-            주문 금액: {totalAmount.toLocaleString()} 원
-          </p>
-          <p className="text-xl font-bold mb-2">
-            남은 시간: <span className="text-red-600">{timeLeft}</span> 초
-          </p>
-          <button
-            onClick={deleteAll}
-            className="text-3xl bg-slate-600 text-white py-2 px-4 rounded hover:bg-slate-800 mt-2 mb-3"
-          >
-            전체삭제
-          </button>
-          <button
-            onClick={() => onMoveToOrderList(cartItems)}
-            className="text-4xl font-bold bg-[#c5e1bb] text-[#2d1b1b] py-4 px-6 rounded hover:bg-[#c5e1bb]"
-          >
-            결제 하기
-          </button>
+
+      {/* 결제 정보 섹션 - 하단 고정 */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg">
+        <div className="max-w-screen-md mx-auto">
+          <div className="p-4 space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600">남은 시간</span>
+              <span className="text-red-600 font-medium">{timeLeft}초</span>
+            </div>
+
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600">총 주문금액</span>
+              <span className="text-lg font-bold">
+                {totalAmount.toLocaleString()}원
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 pt-3">
+              <button
+                onClick={deleteAll}
+                className="px-4 py-3 rounded-lg bg-gray-200 text-gray-800 font-medium hover:bg-gray-300 transition-colors"
+              >
+                전체삭제
+              </button>
+              <button
+                onClick={() => onMoveToOrderList(cartItems)}
+                className="px-4 py-3 rounded-lg bg-[#c5e1bb] text-[#2d1b1b] font-medium hover:bg-[#b3d1a7] transition-colors"
+              >
+                결제하기
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* 하단 여백 - 고정된 결제 정보 섹션을 위한 공간 */}
+      <div className="h-48"></div>
     </div>
   );
 };
