@@ -126,7 +126,7 @@ const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
               className="w-24 h-auto mb-2"
             />{" "}
             <h3 className="text-xl font-bold mb-4">{selectedItem.name}</h3>
-            <p className="text-lg">{totalItemPrice()}원</p>
+            <p className="text-lg">{totalItemPrice().toLocaleString()}원</p>
             {/* 이미지 추가 */}
           </div>
         )}

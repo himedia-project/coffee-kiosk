@@ -15,7 +15,7 @@ const LocationSelect = ({ onSelect, closeModal }) => {
         <h2 className="text-2xl text-center font-bold mb-4">
           장소를 선택해 주세요
         </h2>
-        <div className="flex justify-between">
+        <div className="flex justify-between space-x-4">
           {" "}
           {locations.map((location) => (
             <button
