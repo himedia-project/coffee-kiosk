@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, clearCart, removeFromCart } from "../../slices/cartSlice";
+import {
+  addToCart,
+  clearCart,
+  removeFromCart,
+  removeItem,
+} from "../../slices/cartSlice";
 
 const Cart = ({ onMoveToOrderList }) => {
   const handleChangeDensity = (density) => {
@@ -15,6 +20,10 @@ const Cart = ({ onMoveToOrderList }) => {
         return "2배 진하게";
     }
   };
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
+  //총 주문금액
+  const dispatch = useDispatch();
 
   const [timeLeft, setTimeLeft] = useState(300);
   useEffect(() => {
@@ -27,10 +36,6 @@ const Cart = ({ onMoveToOrderList }) => {
     return () => clearInterval(timer);
   }, [timeLeft]);
 
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const totalAmount = useSelector((state) => state.cart.totalAmount);
-  const dispatch = useDispatch();
-
   const removeCartHandler = (itemId, itemTemperature, itemDensity) => {
     dispatch(
       removeFromCart({
@@ -42,6 +47,18 @@ const Cart = ({ onMoveToOrderList }) => {
     console.log("remove");
   };
 
+  const removeItemHandler = (itemId, itemTemperature, itemDensity) => {
+    dispatch(
+      removeItem({
+        id: itemId,
+        temperature: itemTemperature,
+        density: itemDensity,
+      })
+    );
+    console.log("remove Item");
+  };
+
+  // 장바구니 항목 추가 함수
   const addToCartHandler = (item) => {
     dispatch(
       addToCart({
@@ -87,7 +104,7 @@ const Cart = ({ onMoveToOrderList }) => {
               >
                 <button
                   onClick={() =>
-                    removeCartHandler(item.id, item.temperature, item.density)
+                    removeItemHandler(item.id, item.temperature, item.density)
                   }
                   className="absolute top-2 right-2 text-red-500 hover:text-red-700"
                 >
