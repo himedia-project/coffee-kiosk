@@ -16,10 +16,10 @@ const Category = ({ setSelectedCategory, selectedCategory }) => {
           <li key={category.name} className="flex-1">
             <button
               onClick={() => setSelectedCategory(category.name)}
-              className={`block text-xl text-center py-2 px-4 rounded-lg border border-gray-300 transition w-full ${
+              className={`block text-xl font-bold text-center py-2 px-4 rounded-lg border border-gray-300 transition w-full ${
                 selectedCategory === category.name
-                  ? "bg-green-500 text-white"
-                  : "hover:bg-green-500 hover:text-white"
+                  ? "bg-[#c5e1bb] text-[#2d1b1b]"
+                  : "hover:bg-[#c5e1bb] hover:text-white"
               }`}
             >
               {category.name}

@@ -10,7 +10,7 @@ const MenuItem = ({ category, onItemClick }) => {
         {itemData[category]?.map((item, index) => (
           <li
             key={item.id}
-            className={`m-2 border border-gray-300 rounded-lg overflow-hidden w-52 bg-white transition-transform transform hover:scale-105 cursor-pointer flex flex-col items-center ${
+            className={`m-2 border border-gray-300 rounded-lg overflow-hidden w-64 bg-white transition-transform transform hover:scale-105 cursor-pointer flex flex-col items-center ${
               index < 2 ? "opacity-50" : ""
             }`}
             onClick={() => onItemClick(item)}
