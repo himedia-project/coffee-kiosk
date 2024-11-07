@@ -143,7 +143,9 @@ const Cart = ({ onMoveToOrderList }) => {
                       ➕
                     </button>
                   </div>
-                  <p className="text-sm">가격: {itemPrice(item)} 원</p>
+                  <p className="text-sm">
+                    가격: {itemPrice(item).toLocaleString()} 원
+                  </p>
                   {item.id >= 1 && item.id < 19 && (
                     <>
                       <p className="text-sm">
@@ -165,8 +167,10 @@ const Cart = ({ onMoveToOrderList }) => {
       </div>
       <div className="mt-6 flex justify-end items-center space-x-4">
         <div className="flex flex-col items-end mr-4">
-          <p className="text-xl mb-2">주문 금액: {totalAmount} 원</p>
-          <p className="text-xl mb-2">
+          <p className="text-xl font-bold mb-2">
+            주문 금액: {totalAmount.toLocaleString()} 원
+          </p>
+          <p className="text-xl font-bold mb-2">
             남은 시간: <span className="text-red-600">{timeLeft}</span> 초
           </p>
           <button

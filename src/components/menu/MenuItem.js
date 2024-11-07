@@ -21,7 +21,9 @@ const MenuItem = ({ category, onItemClick }) => {
               className="w-24 h-auto mx-auto"
             />
             <span className="text-lg mt-2">{item.name}</span>
-            <span className="text-sm text-gray-600 mb-2">{item.price}원</span>
+            <span className="text-sm text-gray-600 mb-2">
+              {item.price.toLocaleString()}원
+            </span>
             {index < 2 && (
               <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
                 SOLD OUT
