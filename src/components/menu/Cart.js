@@ -142,7 +142,7 @@ const Cart = ({ onMoveToOrderList }) => {
                     </button>
                   </div>
                   <p className="text-sm">
-                    가격: {itemPrice(item).toLocaleString()} 원
+                    가격: {(item.quantity*(itemPrice(item))).toLocaleString()} 원
                   </p>
                   {item.id >= 1 && item.id < 19 && (
                     <>
