@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <header className="bg-[#c5e1bb] text-[#2d1b1b] p-4 relative flex items-center">
+      <header className="bg-[#c5e1bb] text-[#2d1b1b] p-4 relative flex items-center justify-center">
         <div className="absolute left-4">
           <Link to="/" className="text-xl font-bold flex items-center">
             <img
@@ -15,9 +15,7 @@ const Header = () => {
             <p className="ml-2 mt-1">처음으로</p>
           </Link>
         </div>
-        <h1 className="text-2xl font-bold w-full text-center">
-          Mega I's Cafe KIOSK
-        </h1>
+        <img className="w-[350px] h-auto" src="title.png" alt="LYJ KIOSK" />
       </header>
     </>
   );

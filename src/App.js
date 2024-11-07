@@ -22,18 +22,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<MenuPage category="coffee" />} />
-            <Route path="/category" element={<Category />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route
-              path="/orders"
-              element={<OrderList setOrderItems={setOrderItems} />}
-            />
-            <Route path="/location" element={<LocationSelect />} />{" "}
-            {/* 장소 선택 경로 추가 */}
-            <Route
-              path="/payment"
-              element={<Payment orderItems={orderItems} />}
-            />
           </Routes>{" "}
         </BrowserRouter>
       </Provider>
