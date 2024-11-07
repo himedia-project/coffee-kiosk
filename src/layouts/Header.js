@@ -12,7 +12,7 @@ const Header = () => {
               alt="Home"
               className="inline-block w-6 h-6 [filter:brightness(0)_saturate(100%)_invert(15%)_sepia(10%)_saturate(519%)_hue-rotate(314deg)_brightness(94%)_contrast(93%)]"
             />{" "}
-            <p className="ml-2 mt-1">처음으로</p>
+            <p className="ml-2 mt-1 hidden sm:block">처음으로</p>
           </Link>
         </div>
         <img className="w-[350px] h-auto" src="title.png" alt="LYJ KIOSK" />

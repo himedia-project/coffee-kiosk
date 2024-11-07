@@ -10,8 +10,6 @@ import Header from "../../layouts/Header";
 import AlertModal from "../../components/modal/AlertModal";
 import itemData from "../../data/itemData";
 
-
-
 const MenuPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
@@ -90,14 +88,20 @@ const MenuPage = () => {
   return (
     <div>
       <Header />
-    
+
       <Category
         setSelectedCategory={setSelectedCategory}
         selectedCategory={selectedCategory}
       />
+
       {selectedCategory ? (
         <>
-          <MenuItem category={selectedCategory} onItemClick={handleItemClick} />
+          <div className="bg-gray-100">
+            <MenuItem
+              category={selectedCategory}
+              onItemClick={handleItemClick}
+            />
+          </div>
           <Cart onMoveToOrderList={handleOrderComplete} />
         </>
       ) : (
