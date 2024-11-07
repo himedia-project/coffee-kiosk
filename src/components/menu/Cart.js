@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, clearCart, removeFromCart, removeItem } from "../../slices/cartSlice";
+import {
+  addToCart,
+  clearCart,
+  removeFromCart,
+  removeItem,
+} from "../../slices/cartSlice";
 
 const Cart = ({ onMoveToOrderList }) => {
   const handleChangeDensity = (density) => {
@@ -20,7 +25,7 @@ const Cart = ({ onMoveToOrderList }) => {
   //총 주문금액
   const dispatch = useDispatch();
 
-  const [timeLeft, setTimeLeft] = useState(200);
+  const [timeLeft, setTimeLeft] = useState(300);
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => prev - 1);
@@ -30,8 +35,6 @@ const Cart = ({ onMoveToOrderList }) => {
     }
     return () => clearInterval(timer);
   }, [timeLeft]);
-
-  
 
   // 장바구니에서 항목 삭제 함수
   const removeCartHandler = (itemId, itemTemperature, itemDensity) => {
@@ -52,7 +55,7 @@ const Cart = ({ onMoveToOrderList }) => {
         temperature: itemTemperature,
         density: itemDensity,
       })
-    ); 
+    );
     console.log("remove Item");
   };
 
