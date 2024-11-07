@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import itemData from "../../data/itemData";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
@@ -7,6 +7,11 @@ const MenuItem = ({ category, onItemClick }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
   const itemsPerPage = 8;
   const totalPages = Math.ceil(items.length / itemsPerPage);
+
+  useEffect(() => {
+    // 카테고리가 변경될 때마다 페이지를 초기화
+    setCurrentPage(0);
+  }, [category]);
 
   const nextPage = () => {
     setCurrentPage((prev) => (prev + 1) % totalPages);
