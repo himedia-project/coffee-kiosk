@@ -48,12 +48,7 @@ const cartSlice = createSlice({
 
       if (itemIndex !== -1) {
         const deleteItem = state.cartItems[itemIndex];
-
-        if (deleteItem.quantity > 1) {
-          deleteItem.quantity -= 1;
-        } else {
-          state.cartItems.splice(itemIndex, 1);
-        }
+        state.cartItems.splice(itemIndex, 1);
 
         const densityPrice =
           deleteItem.density === "extra"

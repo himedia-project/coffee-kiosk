@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-green-500 text-white p-6">
       <img src="cafe_icon.png" alt="LYJ KIOSK" className="w-24 mb-6" />
