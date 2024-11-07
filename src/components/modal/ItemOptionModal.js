@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { Link } from "react-router-dom";
 import { addToCart } from "../../slices/cartSlice";
 
 const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
@@ -46,7 +45,7 @@ const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
         {isCoffee ? (
           <>
             <h3 className="text-xl font-bold mb-4">{selectedItem.name}</h3>
-            <p className="text-lg">{totalItemPrice()}원</p>
+            <p className="text-lg">{totalItemPrice().toLocaleString()}원</p>
             <div className="mt-4">
               <h4 className="font-semibold">뜨거운 (HOT) / 차가운 (ICE)</h4>
               <div>

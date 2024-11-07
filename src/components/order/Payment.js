@@ -33,12 +33,14 @@ const Payment = ({ orderItems, closeModal }) => {
                   <span>
                     {item.name} - 수량: {item.quantity}
                   </span>
-                  <span>{item.price}원</span>
+                  <span>{item.price.toLocaleString()}원</span>
                 </li>
               ))}
             </ul>
             <hr />
-            <h3 className="mt-4 font-bold">총 결제 금액: {totalAmount}원</h3>
+            <h3 className="mt-4 font-bold">
+              총 결제 금액: {totalAmount.toLocaleString()}원
+            </h3>
 
             {/* 할부 개월 입력 필드 */}
             <div className="mt-4">

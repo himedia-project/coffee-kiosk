@@ -27,7 +27,9 @@ const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
               <tr key={index}>
                 <td className="border-b py-2">{item.name}</td>
                 <td className="border-b py-2">{item.quantity} 개</td>
-                <td className="border-b py-2">{item.price}원</td>
+                <td className="border-b py-2">
+                  {item.price.toLocaleString()}원
+                </td>
               </tr>
             ))}
           </tbody>
@@ -37,7 +39,8 @@ const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
             총 수량: <span className="font-bold">{totalQuantity} 개</span>
           </p>
           <p className="text-lg text-red-600">
-            결제금액: <span className="font-bold">{totalPrice} 원</span>
+            결제금액:{" "}
+            <span className="font-bold">{totalPrice.toLocaleString()} 원</span>
           </p>
         </div>
         <div className="mt-4 flex justify-between">
