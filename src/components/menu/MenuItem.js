@@ -41,35 +41,57 @@ const MenuItem = ({ category, onItemClick }) => {
           {currentItems.map((item, index) => (
             <div
               key={item.id}
-              className="relative bg-white rounded-lg shadow-md p-4 flex flex-col items-center transition-transform hover:scale-105 cursor-pointer"
+              className={`relative bg-white rounded-lg shadow-md p-4 flex flex-col items-center transition-transform hover:scale-105 cursor-pointer
+                ${item.soldOut ? "bg-gray-100 opacity-75" : ""}`}
               onClick={() => onItemClick(item)}
             >
-              <img
-                src={item.url}
-                alt={item.name}
-                className="w-24 h-24 object-contain mb-2"
-              />
-              <h3 className="font-medium text-sm">{item.name}</h3>
-              <p className="text-gray-600 text-sm">
-                {item.price.toLocaleString()}원
-              </p>
+              <div
+                className={`relative w-full h-full flex flex-col items-center
+                ${
+                  item.soldOut
+                    ? "after:absolute after:inset-0 after:bg-black after:bg-opacity-10 after:rounded-lg"
+                    : ""
+                }`}
+              >
+                <img
+                  src={item.url}
+                  alt={item.name}
+                  className={`w-24 h-24 object-contain mb-2 ${
+                    item.soldOut ? "opacity-75" : ""
+                  }`}
+                />
+                <h3
+                  className={`font-medium text-sm ${
+                    item.soldOut ? "text-gray-500" : ""
+                  }`}
+                >
+                  {item.name}
+                </h3>
+                <p
+                  className={`text-gray-600 text-sm ${
+                    item.soldOut ? "text-gray-400" : ""
+                  }`}
+                >
+                  {item.price.toLocaleString()}원
+                </p>
 
-              {/* Badges */}
-              {item.soldOut && (
-                <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                  SOLD OUT
-                </span>
-              )}
-              {item.isNew && (
-                <span className="absolute top-2 right-2 bg-blue-700 text-white text-xs px-2 py-1 rounded">
-                  NEW
-                </span>
-              )}
-              {item.isRecommended && (
-                <span className="absolute top-2 right-2 bg-orange-400 text-white text-xs px-2 py-1 rounded">
-                  👍 추천
-                </span>
-              )}
+                {/* Badges */}
+                {item.soldOut && (
+                  <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                    SOLD OUT
+                  </span>
+                )}
+                {item.isNew && (
+                  <span className="absolute top-2 right-2 bg-blue-700 text-white text-xs px-2 py-1 rounded">
+                    NEW
+                  </span>
+                )}
+                {item.isRecommended && (
+                  <span className="absolute top-2 right-2 bg-orange-400 text-white text-xs px-2 py-1 rounded">
+                    👍 추천
+                  </span>
+                )}
+              </div>
             </div>
           ))}
         </div>
