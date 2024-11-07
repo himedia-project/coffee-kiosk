@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, clearCart, removeFromCart } from "../../slices/cartSlice";
 
@@ -15,6 +15,17 @@ const Cart = ({ onMoveToOrderList }) => {
         return "2배 진하게";
     }
   };
+
+  const [timeLeft, setTimeLeft] = useState(20);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+    if (timeLeft === 0) {
+      window.location.href = "/"; // 홈 화면으로 리다이렉트
+    }
+    return () => clearInterval(timer);
+  }, [timeLeft]);
 
   const cartItems = useSelector((state) => state.cart.cartItems);
 
@@ -159,6 +170,7 @@ const Cart = ({ onMoveToOrderList }) => {
           </button>
         </div>
         <div>
+          <p className="text-xl">남은 시간: {timeLeft}초</p>
           <button
             onClick={() => onMoveToOrderList(cartItems)}
             className="text-4xl m-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
