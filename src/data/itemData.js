@@ -5,14 +5,14 @@ const itemData = {
       name: "아메리카노",
       price: 2500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610105645_1717984605982_8i5CoHU2NV.jpg",
-      soldOut : true 
+      soldOut: true,
     },
     {
       id: 2,
       name: "바닐라 아메리카노",
       price: 2700,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610133038_1717993838652__Ax_Xwuz6T.jpg",
-      soldOut: true
+      soldOut: true,
     },
     {
       id: 3,
@@ -46,6 +46,7 @@ const itemData = {
       name: "할메가커피",
       price: 2500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610113252_1717986772176_6c36zo5yuf.jpg",
+      isNew: true,
     },
 
     {
@@ -59,6 +60,7 @@ const itemData = {
       name: "카라멜마끼아또",
       price: 3800,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610105805_1717984685954_T1qos0ocDV.jpg",
+      isRecommended: true,
     },
 
     {
@@ -66,6 +68,7 @@ const itemData = {
       name: "카페모카",
       price: 3800,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610105838_1717984718108_ZB6aalHqIU.jpg",
+      isRecommended: true,
     },
 
     {
@@ -101,6 +104,7 @@ const itemData = {
       name: "헤이즐넛아메리카노",
       price: 3000,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610110133_1717984893137_AqJAuHaq0t.jpg",
+      isNew: true,
     },
 
     {
@@ -129,14 +133,14 @@ const itemData = {
       name: "레몬 에이드",
       price: 4500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610114557_1717987557279_GKXThr0HAc.jpg",
-      soldOut: true
+      soldOut: true,
     },
     {
       id: 20,
       name: "블루레몬 에이드",
       price: 4000,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610132302_1717993382502_3JianCydlm.jpg",
-      soldOut: true
+      soldOut: true,
     },
     {
       id: 21,
@@ -155,6 +159,7 @@ const itemData = {
       name: "샤인머스켓그린주스",
       price: 4500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610114703_1717987623930_VIj7O6_wB4.jpg",
+      isRecommended: true,
     },
     {
       id: 24,
@@ -167,12 +172,14 @@ const itemData = {
       name: "딸기바나나주스",
       price: 4800,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610114817_1717987697259_APSvRawmJi.jpg",
+      isRecommended: true,
     },
     {
       id: 26,
       name: "라임모히또",
       price: 3800,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610132145_1717993305587_JyUa7vPj3s.jpg",
+      isNew: true,
     },
     {
       id: 27,
@@ -185,6 +192,7 @@ const itemData = {
       name: "유니콘매직에이드(블루)",
       price: 4800,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610132317_1717993397182_4Pp9UsAoPT.jpg",
+      isNew: true,
     },
     {
       id: 29,
@@ -205,14 +213,14 @@ const itemData = {
       name: "녹차라떼",
       price: 3000,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610112917_1717986557781__XIcwRbg0h.jpg",
-      soldOut: true
+      soldOut: true,
     },
     {
       id: 32,
       name: "아이스초코",
       price: 3000,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610132420_1717993460739_Yi5zAd90Og.jpg",
-      soldOut: true
+      soldOut: true,
     },
     {
       id: 33,
@@ -237,12 +245,14 @@ const itemData = {
       name: "토피넛라뗴",
       price: 3800,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610105954_1717984794244_2JeEMNYiCL.jpg",
+      isRecommended: true,
     },
     {
       id: 37,
       name: "오레오초코라떼",
       price: 4000,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610132638_1717993598875_AQ4q6GUaJD.jpg",
+      isRecommended: true,
     },
     {
       id: 38,
@@ -255,6 +265,7 @@ const itemData = {
       name: "흑당버블라떼",
       price: 4200,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610113023_1717986623453_FuG0kt97Jg.jpg",
+      isNew: true,
     },
     {
       id: 40,
@@ -269,14 +280,14 @@ const itemData = {
       name: "브라우니 쿠키 머핀",
       price: 4500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240904232518_1725459918405_0rSgMhHWNZ.jpg",
-      soldOut: true
+      soldOut: true,
     },
     {
       id: 42,
       name: "아이스 허니 와앙 슈",
       price: 2500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20220701142420_1656653060846_ob6NNIwqms.jpg",
-      soldOut: true
+      soldOut: true,
     },
     {
       id: 43,
@@ -301,12 +312,14 @@ const itemData = {
       name: "버터버터 마늘 크로크무슈",
       price: 3800,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240501232812_1714573692423_O61efAIADP.jpg",
+      isRecommended: true,
     },
     {
       id: 47,
       name: "핫 치킨&딥치즈 치아바타",
       price: 3500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240313214620_1710333980384_G7J1lIUmNH.jpg",
+      isRecommended: true,
     },
     {
       id: 48,
@@ -331,12 +344,14 @@ const itemData = {
       name: "초코스모어쿠키",
       price: 2500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20220701140929_1656652169641_bB76y9JSan.jpg",
+      isNew: true,
     },
     {
       id: 52,
       name: "말차스모어쿠키",
       price: 2500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20220701140755_1656652075467_VlgOHqEzNj.jpg",
+      isNew: true,
     },
   ],
 };
