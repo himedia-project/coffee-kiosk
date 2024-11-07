@@ -67,7 +67,6 @@ const Cart = ({ onMoveToOrderList }) => {
     );
   };
 
-  //메뉴별 옵션 추가 된 금액
   const itemPrice = (item) => {
     const basePrice = item.price;
     const densityPrice =
@@ -76,7 +75,6 @@ const Cart = ({ onMoveToOrderList }) => {
     return basePrice + densityPrice;
   };
 
-  // 총 수량 체크 함수
   const totalQuantity = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
@@ -93,7 +91,6 @@ const Cart = ({ onMoveToOrderList }) => {
       <div className="overflow-x-auto">
         {cartItems.length === 0 ? (
           <div className="text-center text-gray-400 mt-20 mb-20">
-            {" "}
             장바구니에 상품이 없습니다.
           </div>
         ) : (
@@ -117,15 +114,13 @@ const Cart = ({ onMoveToOrderList }) => {
                     alt={item.name}
                     className="w-24 h-auto mx-auto"
                   />
-                  {/* ...표시 */}
                   <h3
                     className="text-lg text-center font-semibold mt-2 overflow-hidden text-ellipsis whitespace-nowrap"
                     style={{ minWidth: "0", maxWidth: "100%" }}
                   >
                     {item.name}
                   </h3>
-
-                  <div className="display inline-flex">
+                  <div className="inline-flex items-center">
                     <button
                       className="mr-2"
                       onClick={() =>
@@ -136,7 +131,7 @@ const Cart = ({ onMoveToOrderList }) => {
                         )
                       }
                     >
-                      ➖{" "}
+                      ➖
                     </button>
                     <p className="text-sm">수량: {item.quantity}</p>
                     <button
@@ -146,46 +141,47 @@ const Cart = ({ onMoveToOrderList }) => {
                       ➕
                     </button>
                   </div>
-                  <p className="text-sm">가격: {itemPrice(item)} 원</p>
-                  {item.id >= 1 &&
-                    item.id < 19 && ( // id가 1~18인 경우에만 온도, 옵션 선택 가능
-                      <>
-                        <p className="text-sm">
-                          온도 선택:{" "}
-                          {item.temperature === "hot"
-                            ? "뜨거운(HOT)"
-                            : "차가운(ICE)"}
-                        </p>
-                        <p className="text-sm">
-                          옵션 선택: {handleChangeDensity(item.density)}
-                        </p>
-                      </>
-                    )}
+                  <p className="text-sm">
+                    가격: {itemPrice(item).toLocaleString()} 원
+                  </p>
+                  {item.id >= 1 && item.id < 19 && (
+                    <>
+                      <p className="text-sm">
+                        온도 선택:{" "}
+                        {item.temperature === "hot"
+                          ? "뜨거운(HOT)"
+                          : "차가운(ICE)"}
+                      </p>
+                      <p className="text-sm">
+                        옵션 선택: {handleChangeDensity(item.density)}
+                      </p>
+                    </>
+                  )}
                 </div>
               </li>
             ))}
           </ul>
         )}
       </div>
-
-      <div className="mt-6 flex justify-end">
-        <div className="flex flex-col items-start">
-          {/* <p className="mt-2 text-lg">총 수량: {totalQuantity()}</p> */}
-          <p className="text-lg">주문 금액: {totalAmount} 원</p>
+      <div className="mt-6 flex justify-end items-center space-x-4">
+        <div className="flex flex-col items-end mr-4">
+          <p className="text-xl font-bold mb-2">
+            주문 금액: {totalAmount.toLocaleString()} 원
+          </p>
+          <p className="text-xl font-bold mb-2">
+            남은 시간: <span className="text-red-600">{timeLeft}</span> 초
+          </p>
           <button
             onClick={deleteAll}
-            className="text-2xl bg-slate-600 text-white py-2 px-4 rounded hover:bg-slate-800"
+            className="text-3xl bg-slate-600 text-white py-2 px-4 rounded hover:bg-slate-800 mt-2 mb-3"
           >
             전체삭제
           </button>
-        </div>
-        <div>
-          <p className="text-xl">남은 시간: {timeLeft}초</p>
           <button
             onClick={() => onMoveToOrderList(cartItems)}
-            className="text-4xl m-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+            className="text-4xl bg-green-500 text-white py-4 px-6 rounded hover:bg-green-600"
           >
-            카드 결제
+            결제 하기
           </button>
         </div>
       </div>

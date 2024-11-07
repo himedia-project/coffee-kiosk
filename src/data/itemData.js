@@ -3,7 +3,7 @@ const itemData = {
     {
       id: 1,
       name: "아메리카노",
-      price: 3000,
+      price: 2500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610105645_1717984605982_8i5CoHU2NV.jpg",
     },
     {
@@ -21,7 +21,7 @@ const itemData = {
     {
       id: 4,
       name: "에스프레소",
-      price: 4000,
+      price: 2000,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610105357_1717984437294_AduuhU3VyW.jpg",
     },
 
@@ -69,7 +69,7 @@ const itemData = {
     {
       id: 11,
       name: "카페라떼",
-      price: 2500,
+      price: 3000,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610105821_1717984701991_RUKCqSZ_HO.jpg",
     },
 
@@ -97,7 +97,7 @@ const itemData = {
     {
       id: 15,
       name: "헤이즐넛아메리카노",
-      price: 2500,
+      price: 3000,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610110133_1717984893137_AqJAuHaq0t.jpg",
     },
 
@@ -199,7 +199,7 @@ const itemData = {
     {
       id: 31,
       name: "녹차라떼",
-      price: 2000,
+      price: 3000,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610112917_1717986557781__XIcwRbg0h.jpg",
     },
     {
