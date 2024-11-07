@@ -66,12 +66,16 @@ const Cart = ({ onMoveToOrderList }) => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg mt-5">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
-        장바구니
-      </h2>
+      <div className="text-center">
+        <img
+          src="cart_icon.png"
+          alt="Cart"
+          className="inline-block w-[52px] h-[52px] mb-2"
+        />
+      </div>
       <div className="overflow-x-auto">
         {cartItems.length === 0 ? (
-          <div className="text-center text-gray-400 mt-20 mb-20">
+          <div className="text-2xl text-center text-gray-400 mt-20 mb-20">
             {" "}
             장바구니에 상품이 없습니다.
           </div>
