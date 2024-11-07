@@ -6,6 +6,8 @@ import {
   removeFromCart,
   removeItem,
 } from "../../slices/cartSlice";
+import AlertModal from "../modal/AlertModal";
+import ConfirmModal from "../modal/ConfirmModal";
 
 const Cart = ({ onMoveToOrderList }) => {
   const handleChangeDensity = (density) => {
@@ -20,6 +22,9 @@ const Cart = ({ onMoveToOrderList }) => {
         return "2배 진하게";
     }
   };
+
+  const [confirmModal, setConfirmModal] = useState(false);
+
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   //총 주문금액
@@ -82,12 +87,29 @@ const Cart = ({ onMoveToOrderList }) => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const deleteAll = () => {
+  const deleteAll = (e) => {
+    e.preventDefault();
+    // 장바구니 비우기 전 AlertModal 창 띄우기
+    setConfirmModal(true);
+  };
+
+  // 장바구니 비우기 확인 함수
+  const handleConfirm = () => {
     dispatch(clearCart());
+    setConfirmModal(false);
   };
 
   return (
     <div className="max-w-screen-md mx-auto bg-gray-50 min-h-screen">
+      {/* 장바구니 타이틀 */}
+      {confirmModal && (
+        <ConfirmModal
+          message="장바구니를 정말 비우시겠습니까?"
+          onConfirm={handleConfirm}
+          onCancel={() => setConfirmModal(false)}
+        />
+      )}
+
       <h2 className="text-2xl text-center font-bold p-4 text-gray-800 border-b bg-white top-0 z-10">
         장바구니
       </h2>
@@ -190,7 +212,7 @@ const Cart = ({ onMoveToOrderList }) => {
 
             <div className="grid grid-cols-2 gap-3 pt-3">
               <button
-                onClick={deleteAll}
+                onClick={(e) => deleteAll(e)}
                 className="px-4 py-3 rounded-lg bg-gray-200 text-gray-800 font-medium hover:bg-gray-300 transition-colors"
               >
                 전체삭제
