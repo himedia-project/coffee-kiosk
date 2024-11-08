@@ -10,7 +10,9 @@ const Home = () => {
       <button className="text-2xl bg-white font-bold text-[#2d1b1b] py-2 px-4 rounded-lg shadow-md hover:bg-gray-200">
         <Link to="/menu">화면을 터치해 주세요</Link>
       </button>
-      <p className="text-2xl mt-4">🎉 지금 주문하시면 10% 할인! 🎉</p>
+      <p className="text-lg md:text-xl lg:text-2xl mt-4">
+        🎉 지금 주문하시면 10% 할인! 🎉
+      </p>
     </div>
   );
 };
