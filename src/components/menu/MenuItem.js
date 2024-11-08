@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import itemData from "../../data/itemData";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useSwipeable } from "react-swipeable";
+import { Skeleton } from "@mui/material";
 
 const MenuItem = ({ category, onItemClick }) => {
   const items = itemData[category] || [];
-  const [currentPage, setCurrentPage] = React.useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 8;
   const totalPages = Math.ceil(items.length / itemsPerPage);
+  // 이미지 로드 여부 상태
+  const [loadedImages, setLoadedImages] = useState({});
 
   useEffect(() => {
     // 카테고리가 변경될 때마다 페이지를 초기화
@@ -27,6 +30,7 @@ const MenuItem = ({ category, onItemClick }) => {
     (currentPage + 1) * itemsPerPage
   );
 
+  // 스와이프 기능 추가
   const handlers = useSwipeable({
     onSwipedLeft: () => {
       if (currentPage < totalPages - 1) {
@@ -41,6 +45,14 @@ const MenuItem = ({ category, onItemClick }) => {
     preventDefaultTouchmoveEvent: true,
     trackMouse: false,
   });
+
+  // 이미지 로드 완료 시 상태 업데이트
+  const handleImageLoad = (itemId) => {
+    setLoadedImages((prev) => ({
+      ...prev,
+      [itemId]: true,
+    }));
+  };
 
   return (
     <div className="relative max-w-screen-lg mx-auto px-4 py-6">
@@ -77,12 +89,21 @@ const MenuItem = ({ category, onItemClick }) => {
                     : ""
                 }`}
               >
+                {!loadedImages[item.id] && (
+                  <Skeleton
+                    variant="rectangular"
+                    width={96}
+                    height={96}
+                    className="mb-2"
+                  />
+                )}
                 <img
                   src={item.url}
                   alt={item.name}
                   className={`w-24 h-24 object-contain mb-2 ${
                     item.soldOut ? "opacity-75" : ""
-                  }`}
+                  } ${!loadedImages[item.id] ? "hidden" : ""}`}
+                  onLoad={() => handleImageLoad(item.id)}
                 />
                 <h3
                   className={`font-medium text-sm ${

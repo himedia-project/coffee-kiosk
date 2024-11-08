@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <header className="bg-[#c5e1bb] text-[#2d1b1b] p-4 relative flex items-center justify-center">
+      <header className="bg-[#c5e1bb] text-[rgb(45,27,27)] p-4 relative flex items-center justify-center">
         <div className="absolute left-4 flex items-center">
           <Link to="/" className="text-xl font-bold flex items-center">
             <img
@@ -12,7 +12,7 @@ const Header = () => {
               alt="Home"
               className="inline-block w-6 h-6 [filter:brightness(0)_saturate(100%)_invert(15%)_sepia(10%)_saturate(519%)_hue-rotate(314deg)_brightness(94%)_contrast(93%)]"
             />
-            <p className="ml-2 hidden sm:block">처음으로</p>
+            <p className="ml-2 mt-1 hidden sm:block">처음으로</p>
           </Link>
         </div>
         <div className="mt-2">
