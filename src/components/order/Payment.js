@@ -20,6 +20,7 @@ const Payment = ({ orderItems, closeModal }) => {
     (total, item) => total + item.price * item.quantity,
     0
   );
+  const discountedAmount = totalAmount * 0.9;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -39,7 +40,7 @@ const Payment = ({ orderItems, closeModal }) => {
             </ul>
             <hr />
             <h3 className="mt-4 font-bold">
-              총 결제 금액: {totalAmount.toLocaleString()}원
+              총 결제 금액: {discountedAmount.toLocaleString()}원
             </h3>
 
             {/* 할부 개월 입력 필드 */}

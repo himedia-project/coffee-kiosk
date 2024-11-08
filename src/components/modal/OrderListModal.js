@@ -7,6 +7,7 @@ const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  const discountedPrice = totalPrice*0.9;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -38,9 +39,13 @@ const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
           <p className="text-lg">
             총 수량: <span className="font-bold">{totalQuantity} 개</span>
           </p>
+          <p className="text-lg text-black-600">
+            총 금액:{" "}
+            <span className="font-bold line-through">{totalPrice.toLocaleString()} 원</span>
+          </p>
           <p className="text-lg text-red-600">
-            결제금액:{" "}
-            <span className="font-bold">{totalPrice.toLocaleString()} 원</span>
+            결제 금액:{" "}
+            <span className="font-bold">{discountedPrice.toLocaleString()} 원</span>
           </p>
         </div>
         <div className="mt-4 flex justify-between">
