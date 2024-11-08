@@ -16,36 +16,38 @@ const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
         <h2 className="text-2xl text-center font-bold mb-4 text-red-600">
           주문정보
         </h2>
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th className="border-b text-center pb-2">상품명</th>
-              <th className="border-b text-center pb-2">수량</th>
-              <th className="border-b text-center pb-2">가격</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dummyData.map((item, index) => {
-              const densityPrice =
-                item.density === "extra"
-                  ? 500
-                  : item.density === "double"
-                  ? 1000
-                  : 0;
-              const itemTotalPrice =
-                (item.price + densityPrice) * item.quantity;
-              return (
-                <tr key={index}>
-                  <td className="border-b py-2">{item.name}</td>
-                  <td className="border-b py-2">{item.quantity} 개</td>
-                  <td className="border-b py-2">
-                    {itemTotalPrice.toLocaleString()}원
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className="max-h-[400px] overflow-y-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr>
+                <th className="border-b text-center pb-2">상품명</th>
+                <th className="border-b text-center pb-2">수량</th>
+                <th className="border-b text-center pb-2">가격</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dummyData.map((item, index) => {
+                const densityPrice =
+                  item.density === "extra"
+                    ? 500
+                    : item.density === "double"
+                    ? 1000
+                    : 0;
+                const itemTotalPrice =
+                  (item.price + densityPrice) * item.quantity;
+                return (
+                  <tr key={index}>
+                    <td className="border-b py-2">{item.name}</td>
+                    <td className="border-b py-2">{item.quantity} 개</td>
+                    <td className="border-b py-2">
+                      {itemTotalPrice.toLocaleString()}원
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
         <div className="mt-4">
           <p className="text-lg">
             총 수량: <span className="font-bold">{totalQuantity} 개</span>

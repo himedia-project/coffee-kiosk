@@ -9,15 +9,21 @@ import {
 import AlertModal from "../modal/AlertModal";
 import ConfirmModal from "../modal/ConfirmModal";
 
-
 const Cart = ({ onMoveToOrderList }) => {
   const onMoveToOrderListWithPrice = (cartItems) => {
-  const orderItems = cartItems.map((item) => ({
-    ...item,
-    totalPrice: (item.price + (item.density === "extra" ? 500 : item.density === "double" ? 1000 : 0)) * item.quantity
-  }));
-  onMoveToOrderList(orderItems);
-};
+    const orderItems = cartItems.map((item) => ({
+      ...item,
+      totalPrice:
+        (item.price +
+          (item.density === "extra"
+            ? 500
+            : item.density === "double"
+            ? 1000
+            : 0)) *
+        item.quantity,
+    }));
+    onMoveToOrderList(orderItems);
+  };
 
   const handleChangeDensity = (density) => {
     switch (density) {
@@ -33,14 +39,13 @@ const Cart = ({ onMoveToOrderList }) => {
   };
 
   const [confirmModal, setConfirmModal] = useState(false);
-
+  const [isEmptyCartModal, setIsEmptyCartModal] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   //총 주문금액
   const dispatch = useDispatch();
 
   const isLatteIds = [31, 32, 34, 35, 36, 40];
- 
 
   const [timeLeft, setTimeLeft] = useState(300);
   useEffect(() => {
@@ -101,8 +106,12 @@ const Cart = ({ onMoveToOrderList }) => {
 
   const deleteAll = (e) => {
     e.preventDefault();
-    // 장바구니 비우기 전 AlertModal 창 띄우기
-    setConfirmModal(true);
+    if (cartItems.length === 0) {
+      setIsEmptyCartModal(true);
+    } else {
+      // 장바구니 비우기 전 AlertModal 창 띄우기
+      setConfirmModal(true);
+    }
   };
 
   // 장바구니 비우기 확인 함수
@@ -120,6 +129,12 @@ const Cart = ({ onMoveToOrderList }) => {
             message="장바구니를 정말 비우시겠습니까?"
             onConfirm={handleConfirm}
             onCancel={() => setConfirmModal(false)}
+          />
+        )}
+        {isEmptyCartModal && (
+          <AlertModal
+          message="장바구니가 비어있습니다"
+          closeModal={()=>setIsEmptyCartModal(false)}
           />
         )}
 
@@ -239,6 +254,7 @@ const Cart = ({ onMoveToOrderList }) => {
                 >
                   전체삭제
                 </button>
+
                 <button
                   onClick={() => onMoveToOrderListWithPrice(cartItems)}
                   className="px-4 py-3 rounded-lg bg-[#c5e1bb] text-[#2d1b1b] font-medium hover:bg-[#b3d1a7] transition-colors"
