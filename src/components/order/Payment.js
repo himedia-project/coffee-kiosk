@@ -16,10 +16,11 @@ const Payment = ({ orderItems, closeModal }) => {
   const data = orderItems || [];
 
   // 총 금액 계산
-  const totalAmount = data.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const totalAmount = data.reduce((total, item) => {
+    const densityPrice =
+      item.density === "extra" ? 500 : item.density === "double" ? 1000 : 0;
+    return total + (item.price + densityPrice) * item.quantity;
+  }, 0);
   const discountedAmount = totalAmount * 0.9;
 
   return (
@@ -29,15 +30,27 @@ const Payment = ({ orderItems, closeModal }) => {
           <div>
             <h2 className="text-2xl text-center font-bold mb-4">결제창</h2>
             <ul className="flex flex-col space-y-2 mb-3">
-              {data.map((item, index) => (
-                <li key={index} className="flex justify-between">
-                  <span>
-                    {item.name} - 수량: {item.quantity}
-                  </span>
-                  <span>{item.price.toLocaleString()}원</span>
-                </li>
-              ))}
+              {data.map((item, index) => {
+                const densityPrice =
+                  item.density === "extra"
+                    ? 500
+                    : item.density === "double"
+                    ? 1000
+                    : 0;
+                const itemTotalPrice =
+                  (item.price + densityPrice) * item.quantity;
+
+                return (
+                  <li key={index} className="flex justify-between">
+                    <span>
+                      {item.name} - 수량: {item.quantity}
+                    </span>
+                    <span>{itemTotalPrice.toLocaleString()}원</span>
+                  </li>
+                );
+              })}
             </ul>
+
             <hr />
             <h3 className="mt-4 font-bold">
               총 결제 금액: {discountedAmount.toLocaleString()}원

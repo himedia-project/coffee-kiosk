@@ -9,7 +9,16 @@ import {
 import AlertModal from "../modal/AlertModal";
 import ConfirmModal from "../modal/ConfirmModal";
 
+
 const Cart = ({ onMoveToOrderList }) => {
+  const onMoveToOrderListWithPrice = (cartItems) => {
+  const orderItems = cartItems.map((item) => ({
+    ...item,
+    totalPrice: (item.price + (item.density === "extra" ? 500 : item.density === "double" ? 1000 : 0)) * item.quantity
+  }));
+  onMoveToOrderList(orderItems);
+};
+
   const handleChangeDensity = (density) => {
     switch (density) {
       case "basic":
@@ -219,7 +228,7 @@ const Cart = ({ onMoveToOrderList }) => {
                   전체삭제
                 </button>
                 <button
-                  onClick={() => onMoveToOrderList(cartItems)}
+                  onClick={() => onMoveToOrderListWithPrice(cartItems)}
                   className="px-4 py-3 rounded-lg bg-[#c5e1bb] text-[#2d1b1b] font-medium hover:bg-[#b3d1a7] transition-colors"
                 >
                   결제하기

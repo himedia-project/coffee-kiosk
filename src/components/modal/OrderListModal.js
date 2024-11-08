@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 
 const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
   const totalQuantity = dummyData.reduce((acc, item) => acc + item.quantity, 0);
-  const totalPrice = dummyData.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
-  const discountedPrice = totalPrice*0.9;
+  const totalPrice = dummyData.reduce((acc, item) => {
+    const densityPrice =
+      item.density === "extra" ? 500 : item.density === "double" ? 1000 : 0;
+    return acc + (item.price + densityPrice) * item.quantity;
+  }, 0);
+  const discountedPrice = totalPrice * 0.9;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -24,15 +25,25 @@ const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
             </tr>
           </thead>
           <tbody>
-            {dummyData.map((item, index) => (
-              <tr key={index}>
-                <td className="border-b py-2">{item.name}</td>
-                <td className="border-b py-2">{item.quantity} 개</td>
-                <td className="border-b py-2">
-                  {item.price.toLocaleString()}원
-                </td>
-              </tr>
-            ))}
+            {dummyData.map((item, index) => {
+              const densityPrice =
+                item.density === "extra"
+                  ? 500
+                  : item.density === "double"
+                  ? 1000
+                  : 0;
+              const itemTotalPrice =
+                (item.price + densityPrice) * item.quantity;
+              return (
+                <tr key={index}>
+                  <td className="border-b py-2">{item.name}</td>
+                  <td className="border-b py-2">{item.quantity} 개</td>
+                  <td className="border-b py-2">
+                    {itemTotalPrice.toLocaleString()}원
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
         <div className="mt-4">
@@ -41,11 +52,15 @@ const OrderListModal = ({ closeModal, onComplete, onNext, dummyData }) => {
           </p>
           <p className="text-lg text-black-600">
             총 금액:{" "}
-            <span className="font-bold line-through">{totalPrice.toLocaleString()} 원</span>
+            <span className="font-bold line-through">
+              {totalPrice.toLocaleString()} 원
+            </span>
           </p>
           <p className="text-lg text-red-600">
             결제 금액:{" "}
-            <span className="font-bold">{discountedPrice.toLocaleString()} 원</span>
+            <span className="font-bold">
+              {discountedPrice.toLocaleString()} 원
+            </span>
           </p>
         </div>
         <div className="mt-4 flex justify-between">
