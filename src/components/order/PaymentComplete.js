@@ -27,7 +27,7 @@ const PaymentComplete = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-5 rounded-lg shadow-lg w-96">
-        <div className="flex flex-col items-center justify-center h-screen bg-green-100">
+        <div className="flex flex-col items-center justify-center h-screen bg-[#c5e1bb]">
           <h2 className="text-2xl font-bold text-gray-800">
             결제가 완료되었습니다!
           </h2>
