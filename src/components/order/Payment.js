@@ -22,6 +22,7 @@ const Payment = ({ orderItems, closeModal }) => {
     return total + (item.price + densityPrice) * item.quantity;
   }, 0);
   const discountedAmount = totalAmount * 0.9;
+  const discountAmount = totalAmount - discountedAmount;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -52,6 +53,9 @@ const Payment = ({ orderItems, closeModal }) => {
             </ul>
 
             <hr />
+            <p className="mt-4 font-bold">
+            총 할인 금액: {discountAmount.toLocaleString()}원
+          </p>
             <h3 className="mt-4 font-bold">
               총 결제 금액: {discountedAmount.toLocaleString()}원
             </h3>
