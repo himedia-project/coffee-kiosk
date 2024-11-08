@@ -6,6 +6,8 @@ import { addToCart } from "../../slices/cartSlice";
 const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
   const isCoffee = category === "커피";
   console.log("ItemOptionModal category: ", category);
+  const isIceLatteIds = [31, 32, 34,35,36,40];
+  const isIceLatte = isIceLatteIds.includes(selectedItem.id);
 
   const [selectedTemperature, setSelectedTemperature] = useState("hot"); // 기본값 설정
   const [selectedDensity, setSelectedDensity] = useState("basic");
@@ -117,18 +119,52 @@ const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
               </div>
             </div>
           </>
-        ) : (
-          <div className="mt-4 flex flex-col items-center">
-            <p className="text-center">선택하신 상품의 옵션을 선택해주세요.</p>
-            <img
-              src={selectedItem.url}
-              alt={selectedItem.name}
-              className="w-24 h-auto mb-2"
-            />{" "}
+        ) : isIceLatte? (
+          <>
             <h3 className="text-xl font-bold mb-4">{selectedItem.name}</h3>
             <p className="text-lg">{totalItemPrice().toLocaleString()}원</p>
-            {/* 이미지 추가 */}
-          </div>
+            <div className="mt-4">
+              <h4 className="font-semibold">뜨거운 (HOT) / 차가운 (ICE)</h4>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="temperature"
+                    value="hot"
+                    checked={selectedTemperature === "hot"}
+                    onChange={() => setSelectedTemperature("hot")}
+                  />{" "}
+                  뜨거운 (HOT)
+                </label>
+                <label className="ml-4">
+                  <input
+                    type="radio"
+                    name="temperature"
+                    value="ice"
+                    checked={selectedTemperature === "ice"}
+                    onChange={() => setSelectedTemperature("ice")}
+                  />{" "}
+                  차가운 (ICE)
+                </label>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="mt-4 flex flex-col items-center">
+              <p className="text-center">
+                선택하신 상품의 옵션을 선택해주세요.
+              </p>
+              <img
+                src={selectedItem.url}
+                alt={selectedItem.name}
+                className="w-24 h-auto mb-2"
+              />{" "}
+              <h3 className="text-xl font-bold mb-4">{selectedItem.name}</h3>
+              <p className="text-lg">{totalItemPrice().toLocaleString()}원</p>
+              {/* 이미지 추가 */}
+            </div>
+          </>
         )}
 
         <div className="mt-4 flex justify-between">

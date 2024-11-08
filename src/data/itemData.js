@@ -217,14 +217,14 @@ const itemData = {
     },
     {
       id: 32,
-      name: "아이스초코",
+      name: "초코라떼",
       price: 3000,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610132420_1717993460739_Yi5zAd90Og.jpg",
       soldOut: true,
     },
     {
       id: 33,
-      name: "딸기라뗴",
+      name: "딸기라떼",
       price: 3500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610132103_1717993263530_CsdWhPUY2U.jpg",
     },
