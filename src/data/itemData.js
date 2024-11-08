@@ -5,7 +5,6 @@ const itemData = {
       name: "아메리카노",
       price: 2500,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610105645_1717984605982_8i5CoHU2NV.jpg",
-      soldOut: true,
     },
     {
       id: 2,
@@ -39,6 +38,7 @@ const itemData = {
       name: "연유라떼",
       price: 3900,
       url: "https://img.79plus.co.kr/megahp/manager/upload/menu/20240610132459_1717993499610_KiXcTR2q5P.jpg",
+      soldOut: true,
     },
 
     {
