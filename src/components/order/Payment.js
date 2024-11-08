@@ -28,7 +28,7 @@ const Payment = ({ orderItems, closeModal }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-5 rounded-lg shadow-lg w-96">
         {!isPaid ? (
-          <div className="max-h-[400px] overflow-y-auto">
+          <div className="max-h-[500px] overflow-y-auto">
             <h2 className="text-2xl text-center font-bold mb-4">결제창</h2>
             <ul className="flex flex-col space-y-2 mb-3">
               {data.map((item, index) => {
