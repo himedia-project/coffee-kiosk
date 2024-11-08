@@ -6,8 +6,8 @@ import { addToCart } from "../../slices/cartSlice";
 const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
   const isCoffee = category === "커피";
   console.log("ItemOptionModal category: ", category);
-  const isIceLatteIds = [31, 32, 34,35,36,40];
-  const isIceLatte = isIceLatteIds.includes(selectedItem.id);
+  const isLatteIds = [31, 32, 34,35,36,40];
+  const isLatte = isLatteIds.includes(selectedItem.id);
 
   const [selectedTemperature, setSelectedTemperature] = useState("hot"); // 기본값 설정
   const [selectedDensity, setSelectedDensity] = useState("basic");
@@ -119,7 +119,7 @@ const ItemOptionModal = ({ category, selectedItem, closeModal }) => {
               </div>
             </div>
           </>
-        ) : isIceLatte? (
+        ) : isLatte? (
           <>
             <h3 className="text-xl font-bold mb-4">{selectedItem.name}</h3>
             <p className="text-lg">{totalItemPrice().toLocaleString()}원</p>

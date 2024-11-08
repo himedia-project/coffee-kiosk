@@ -39,6 +39,9 @@ const Cart = ({ onMoveToOrderList }) => {
   //총 주문금액
   const dispatch = useDispatch();
 
+  const isLatteIds = [31, 32, 34, 35, 36, 40];
+ 
+
   const [timeLeft, setTimeLeft] = useState(300);
   useEffect(() => {
     const timer = setInterval(() => {
@@ -170,7 +173,16 @@ const Cart = ({ onMoveToOrderList }) => {
                         <p>{handleChangeDensity(item.density)}</p>
                       </div>
                     )}
-
+                    {isLatteIds.includes(item.id) && (
+                      <div className="text-sm text-gray-600 mt-1">
+                        <p>
+                          {item.temperature === "hot"
+                            ? "뜨거운(HOT)"
+                            : "차가운(ICE)"}
+                        </p>
+                        <p>{handleChangeDensity(item.density)}</p>
+                      </div>
+                    )}
                     <div className="flex justify-between items-center mt-3">
                       <div className="flex items-center space-x-3">
                         <button
