@@ -9,7 +9,11 @@ import {
 import AlertModal from "../modal/AlertModal";
 import ConfirmModal from "../modal/ConfirmModal";
 
-const Cart = ({ onMoveToOrderList }) => {
+const Cart = ({
+  onMoveToOrderList,
+  onShowConfirmModal,
+  onShowEmptyCartModal,
+}) => {
   const onMoveToOrderListWithPrice = (cartItems) => {
     const orderItems = cartItems.map((item) => ({
       ...item,
@@ -38,8 +42,8 @@ const Cart = ({ onMoveToOrderList }) => {
     }
   };
 
-  const [confirmModal, setConfirmModal] = useState(false);
-  const [isEmptyCartModal, setIsEmptyCartModal] = useState(false);
+  // const [confirmModal, setConfirmModal] = useState(false);
+  // const [isEmptyCartModal, setIsEmptyCartModal] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   //총 주문금액
@@ -107,38 +111,25 @@ const Cart = ({ onMoveToOrderList }) => {
   const deleteAll = (e) => {
     e.preventDefault();
     if (cartItems.length === 0) {
-      setIsEmptyCartModal(true);
+      // setIsEmptyCartModal(true);
+      onShowEmptyCartModal();
     } else {
       // 장바구니 비우기 전 AlertModal 창 띄우기
-      setConfirmModal(true);
+      // setConfirmModal(true);
+      onShowConfirmModal(() => handleConfirm());
     }
   };
 
   // 장바구니 비우기 확인 함수
   const handleConfirm = () => {
     dispatch(clearCart());
-    setConfirmModal(false);
+    // setConfirmModal(false);
   };
 
   return (
     <div className="bg-[#ffffff]">
       <div className="max-w-screen-md mx-auto bg-gray-50 min-h-screen">
-        {/* 장바구니 타이틀 */}
-        {confirmModal && (
-          <ConfirmModal
-            message="장바구니를 정말 비우시겠습니까?"
-            onConfirm={handleConfirm}
-            onCancel={() => setConfirmModal(false)}
-          />
-        )}
-        {isEmptyCartModal && (
-          <AlertModal
-          message="장바구니가 비어있습니다"
-          closeModal={()=>setIsEmptyCartModal(false)}
-          />
-        )}
-
-        <h2 className="text-2xl text-center font-bold p-4 text-gray-800 border-b bg-white top-0 z-10">
+        <h2 className="text-2xl text-center font-bold p-4 text-gray-800 border-b bg-white top-0 z-0">
           장바구니
         </h2>
 
@@ -232,7 +223,7 @@ const Cart = ({ onMoveToOrderList }) => {
         </div>
 
         {/* 결제 정보 섹션 - 하단 고정 */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg">
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg z-[0]">
           <div className="max-w-screen-md mx-auto">
             <div className="p-4 space-y-3">
               <div className="flex justify-between items-center">

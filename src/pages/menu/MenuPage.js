@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import Cart from "../../components/menu/Cart";
 import Category from "../../components/menu/Category";
 import MenuItem from "../../components/menu/MenuItem";
+import AlertModal from "../../components/modal/AlertModal";
+import ConfirmModal from "../../components/modal/ConfirmModal";
 import ItemOptionModal from "../../components/modal/ItemOptionModal";
 import OrderListModal from "../../components/modal/OrderListModal";
 import LocationSelect from "../../components/order/LocationSelect";
 import Payment from "../../components/order/Payment";
 import Header from "../../layouts/Header";
-import AlertModal from "../../components/modal/AlertModal";
-import itemData from "../../data/itemData";
 
 const MenuPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -21,11 +21,13 @@ const MenuPage = () => {
   const [isEmptyItems, setIsEmptyItems] = useState(false);
   const [isSoldOutItem, setIsSoldOutItem] = useState(false);
 
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [isEmptyCartModal, setIsEmptyCartModal] = useState(false);
+  const [handleConfirmAction, setHandleConfirmAction] = useState(null);
+
   useEffect(() => {
     setSelectedCategory("커피"); // 기본 카테고리 설정
   }, []); // 컴포넌트가 처음 마운트될 때만 실행
-
-  const items = itemData[selectedCategory] || [];
 
   const handleItemClick = (item) => {
     if (item.soldOut === true) {
@@ -62,12 +64,13 @@ const MenuPage = () => {
     }
   };
 
+  // 상품이 비어있을 때 알림창 닫기
   const closeItemsEmptyAlertModal = () => {
     setIsEmptyItems(false);
   };
 
   const soldOutItemAlertModal = () => {
-    //
+    // 품절 알림창 닫기
     setIsSoldOutItem(false);
   };
 
@@ -83,6 +86,20 @@ const MenuPage = () => {
 
   const handlePaymentComplete = () => {
     setPaymentOpen(false);
+  };
+
+  // 장바구니 비우기 확인 모달 함수
+  const showConfirmModal = (confirmAction) => {
+    setConfirmModal(true);
+    setHandleConfirmAction(() => confirmAction);
+  };
+
+  // 장바구니 비우기 확인 함수
+  const handleConfirm = () => {
+    if (handleConfirmAction) {
+      handleConfirmAction();
+    }
+    setConfirmModal(false);
   };
 
   return (
@@ -102,7 +119,11 @@ const MenuPage = () => {
               onItemClick={handleItemClick}
             />
           </div>
-          <Cart onMoveToOrderList={handleOrderComplete} />
+          <Cart
+            onMoveToOrderList={handleOrderComplete}
+            onShowConfirmModal={showConfirmModal}
+            onShowEmptyCartModal={() => setIsEmptyCartModal(true)}
+          />
         </>
       ) : (
         <p>카테고리를 선택하세요.</p>
@@ -145,6 +166,20 @@ const MenuPage = () => {
           orderItems={orderItems}
           onComplete={handlePaymentComplete}
           closeModal={closePaymentOpenModal}
+        />
+      )}
+      {/* 모달들을 MenuPage 레벨로 이동 */}
+      {confirmModal && (
+        <ConfirmModal
+          message="장바구니를 정말 비우시겠습니까?"
+          onConfirm={handleConfirm}
+          onCancel={() => setConfirmModal(false)}
+        />
+      )}
+      {isEmptyCartModal && (
+        <AlertModal
+          message="장바구니가 비어있습니다!"
+          closeModal={() => setIsEmptyCartModal(false)}
         />
       )}
     </div>
