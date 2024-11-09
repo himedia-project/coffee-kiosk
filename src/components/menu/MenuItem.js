@@ -61,7 +61,7 @@ const MenuItem = ({ category, onItemClick }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setSlideDirection("");
-    }, 1200); // transition 시간과 동일하게 설정
+    }, 500); // 500ms로 수정
 
     return () => clearTimeout(timer);
   }, [currentPage]);
@@ -83,7 +83,7 @@ const MenuItem = ({ category, onItemClick }) => {
 
           <div
             {...handlers}
-            className={`grid grid-cols-2 md:grid-cols-4 gap-4 transition-all duration-1200 ease-in-out touch-pan-y
+            className={`grid grid-cols-2 md:grid-cols-4 gap-4 transition-transform duration-500 ease-out will-change-transform touch-pan-y
               ${
                 slideDirection === "slide-left"
                   ? "animate-slide-left"
