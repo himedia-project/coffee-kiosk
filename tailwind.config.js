@@ -5,17 +5,17 @@ module.exports = {
     extend: {
       keyframes: {
         slideLeft: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-100%)" },
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
         },
         slideRight: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(100%)" },
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
         },
       },
       animation: {
-        "slide-left": "slideLeft 0.3s ease-in-out",
-        "slide-right": "slideRight 0.3s ease-in-out",
+        "slide-left": "slideLeft 0.5s ease-in-out",
+        "slide-right": "slideRight 0.5s ease-in-out",
       },
     },
   },
