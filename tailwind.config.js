@@ -21,7 +21,7 @@ module.exports = {
         "slide-left": "slideLeft 0.5s ease-in-out",
         "slide-right": "slideRight 0.5s ease-in-out",
         "marquee-mobile": "marquee 12s linear infinite",
-        "marquee-desktop": "marquee 8s linear infinite",
+        "marquee-desktop": "marquee 10s linear infinite",
       },
     },
   },

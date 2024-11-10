@@ -22,7 +22,7 @@ const Home = () => {
       </button>
       <div className="overflow-hidden w-full bg-[#2d1b1b] mt-2">
         <p
-          className="text-lg md:text-xl lg:text-2xl mt-4 animate-marquee-mobile md:animate-marquee-desktop whitespace-nowrap"
+          className="text-lg md:text-xl lg:text-2xl mt-[5px] animate-marquee-mobile md:animate-marquee-desktop whitespace-nowrap"
           style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
         >
           🎉 지금 주문하시면{" "}
