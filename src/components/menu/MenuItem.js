@@ -109,7 +109,7 @@ const MenuItem = ({ category, onItemClick }) => {
                 >
                   {!loadedImages[item.id] && (
                     <Skeleton
-                      variant="rectangular"
+                      variant="rounded"
                       width={96}
                       height={96}
                       className="mb-2"
