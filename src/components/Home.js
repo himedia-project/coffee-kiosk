@@ -20,13 +20,15 @@ const Home = () => {
       <button className="text-2xl bg-white font-bold text-[#2d1b1b] py-2 px-4 rounded-lg shadow-md hover:bg-gray-200">
         <Link to="/menu">화면을 터치해 주세요</Link>
       </button>
-      <p
-        className="text-lg md:text-xl lg:text-2xl mt-4"
-        style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
-      >
-        🎉 지금 주문하시면{" "}
-        <span className="font-bold text-yellow-400">10%</span> 할인! 🎉
-      </p>
+      <div className="overflow-hidden w-full bg-[#2d1b1b] mt-2">
+        <p
+          className="text-lg md:text-xl lg:text-2xl mt-4 animate-marquee-mobile md:animate-marquee-desktop whitespace-nowrap"
+          style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
+        >
+          🎉 지금 주문하시면{" "}
+          <span className="font-bold text-yellow-400">10%</span> 할인! 🎉
+        </p>
+      </div>
     </div>
   );
 };
