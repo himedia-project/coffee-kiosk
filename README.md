@@ -45,7 +45,7 @@
 
 <br>
 
-## 🗃️ 상세 기능
+## ☸️ 상세 기능
 
 ```
 ✳️ 홈화면
@@ -79,3 +79,92 @@
 ⚙️ 결제 완료 화면 (5초)
  => 결제 완료되었습니다.
 ```
+
+<br>
+
+## 🗃️ 폴더구조
+
+```bash
+│  App.css
+│  App.js
+│  App.test.js
+│  index.css
+│  index.js
+│  logo.svg
+│  reportWebVitals.js
+│  setupTests.js
+│  store.js
+│
+├─components
+│  │  Home.js
+│  │
+│  ├─menu
+│  │      Cart.js
+│  │      Category.js
+│  │      MenuItem.js
+│  │      
+│  ├─modal
+│  │      AlertModal.js
+│  │      ConfirmModal.js
+│  │      ItemOptionModal.js
+│  │      OrderListModal.js
+│  │
+│  └─order
+│          LocationSelect.js
+│          OrderList.js
+│          Payment.js
+│          PaymentComplete.js
+│
+├─data
+│      itemData.js
+│
+├─layouts
+│      Header.js
+│
+├─pages
+│  └─menu
+│          MenuPage.js
+│
+├─slices
+│      cartSlice.js
+│
+├─slick
+│      Arrow.js
+│      SlickSlider.css
+│      SlickSlider.js
+│
+└─test
+        Test.js
+```
+
+<br>
+
+## 📕 라이브러리
+
+```bash
+# React Router
+npm install react-router-dom
+
+# Redux
+npm install @reduxjs/toolkit react-redux
+
+# Tailwind CSS
+npm install -D tailwindcss
+npx tailwindcss init
+
+# DaisyUI (Tailwind CSS 플러그인)
+npm install daisyui
+
+# font awesome 
+npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core
+
+# Material-UI (MUI) -> Skeleton 은 여기서
+npm install @mui/material @emotion/react @emotion/styled
+
+# 스와이핑 기능
+npm install react-swipeable@7.0.2
+
+# 반응형 캐러셀(슬라이더) 기능을 제공
+npm install slick-carousel@1.8.1
+```
+
