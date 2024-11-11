@@ -13,8 +13,8 @@ module.exports = {
           "100%": { transform: "translateX(0)" },
         },
         marquee: {
-          "0%": { transform: "translateX(-80%)" },
-          "100%": { transform: "translateX(100%)" },
+          "0%": { transform: "translateX(-25%)" }, // 할인문구가 초기에 바로 나오게 위치 조정
+          "100%": { transform: "translateX(155%)" },
         },
       },
       animation: {
