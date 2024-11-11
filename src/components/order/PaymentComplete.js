@@ -9,6 +9,16 @@ const PaymentComplete = () => {
   const dispatch = useDispatch();
   const [progress, setProgress] = useState(100);
 
+  // 카운트다운 타이머
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((countdown) => countdown - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // 프로그래스 바 타이머
   useEffect(() => {
     const startTime = Date.now();
     const duration = 5000; // 5초
@@ -32,14 +42,6 @@ const PaymentComplete = () => {
 
     return () => clearInterval(progressTimer);
   }, [navigate, dispatch]);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown((countdown) => countdown - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
