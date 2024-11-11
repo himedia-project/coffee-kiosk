@@ -15,7 +15,8 @@
 
 ## 🖥️ 동작 화면
 
-![mega-is-coffee-_2024-11-09-192928-ezgif com-resize](https://github.com/user-attachments/assets/df3a3d40-9ecb-4f3a-aa05-393f5f933b8e)
+![mega-is-coffee_Mobile_시연영상_20241109_resize](https://github.com/user-attachments/assets/04143d0a-c47f-4277-bdd1-bfdb83e1f272)
+
 
 
 
